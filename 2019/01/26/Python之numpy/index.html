@@ -117,18 +117,18 @@
 
 
 
-<meta name="description" content="1. numpy.random 参考于:  https://docs.scipy.org/doc/numpy-1.15.1/reference/routines.random.html  https://www.jianshu.com/p/214798dd8f93numpy.random.rand() numpy.random.rand(d0,d1,…,dn) 根据给定维度生成[0,1)之间的数据">
+<meta name="description" content="numpy.random 参考于:  https://docs.scipy.org/doc/numpy-1.15.1/reference/routines.random.html  https://www.jianshu.com/p/214798dd8f93numpy.random.rand() numpy.random.rand(d0,d1,…,dn) 根据给定维度生成[0,1)之间的数据，包含">
 <meta name="keywords" content="Python">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python的小伙伴们之numpy">
 <meta property="og:url" content="http://yoursite.com/2019/01/26/Python之numpy/index.html">
 <meta property="og:site_name" content="Gy&#39;s Blog">
-<meta property="og:description" content="1. numpy.random 参考于:  https://docs.scipy.org/doc/numpy-1.15.1/reference/routines.random.html  https://www.jianshu.com/p/214798dd8f93numpy.random.rand() numpy.random.rand(d0,d1,…,dn) 根据给定维度生成[0,1)之间的数据">
+<meta property="og:description" content="numpy.random 参考于:  https://docs.scipy.org/doc/numpy-1.15.1/reference/routines.random.html  https://www.jianshu.com/p/214798dd8f93numpy.random.rand() numpy.random.rand(d0,d1,…,dn) 根据给定维度生成[0,1)之间的数据，包含">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-26T13:31:27.480Z">
+<meta property="og:updated_time" content="2019-01-26T13:34:47.535Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python的小伙伴们之numpy">
-<meta name="twitter:description" content="1. numpy.random 参考于:  https://docs.scipy.org/doc/numpy-1.15.1/reference/routines.random.html  https://www.jianshu.com/p/214798dd8f93numpy.random.rand() numpy.random.rand(d0,d1,…,dn) 根据给定维度生成[0,1)之间的数据">
+<meta name="twitter:description" content="numpy.random 参考于:  https://docs.scipy.org/doc/numpy-1.15.1/reference/routines.random.html  https://www.jianshu.com/p/214798dd8f93numpy.random.rand() numpy.random.rand(d0,d1,…,dn) 根据给定维度生成[0,1)之间的数据，包含">
 
 
 
@@ -380,7 +380,7 @@
       
 
       
-        <h2 id="1-numpy-random"><a href="#1-numpy-random" class="headerlink" title="1. numpy.random"></a>1. numpy.random</h2><ul>
+        <h2 id="numpy-random"><a href="#numpy-random" class="headerlink" title="numpy.random"></a>numpy.random</h2><ul>
 <li>参考于:<br>  <a href="https://docs.scipy.org/doc/numpy-1.15.1/reference/routines.random.html" target="_blank" rel="noopener">https://docs.scipy.org/doc/numpy-1.15.1/reference/routines.random.html</a><br>  <a href="https://www.jianshu.com/p/214798dd8f93" target="_blank" rel="noopener">https://www.jianshu.com/p/214798dd8f93</a><h3 id="numpy-random-rand"><a href="#numpy-random-rand" class="headerlink" title="numpy.random.rand()"></a>numpy.random.rand()</h3></li>
 <li>numpy.random.rand(d0,d1,…,dn)</li>
 <li>根据给定维度生成[0,1)之间的数据，包含0，不包含1</li>
@@ -419,7 +419,7 @@
 <li>seed:指定seed值,将会得到相同的随机结果</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">np.random.seed(<span class="number">1000</span>)</span><br><span class="line">np.random.randint(<span class="number">5</span>)</span><br><span class="line"><span class="comment"># 3</span></span><br><span class="line"></span><br><span class="line">np.random.seed(<span class="number">1000</span>)</span><br><span class="line">np.random.randint(<span class="number">5</span>)</span><br><span class="line"><span class="comment"># 3</span></span><br></pre></td></tr></table></figure>
-<h2 id="2-其他"><a href="#2-其他" class="headerlink" title="2.其他"></a>2.其他</h2><ul>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><ul>
 <li>astype操作总是会返回一个新的数组</li>
 <li>两个数组之间的运算是对应位置元素的运算;数组与标量的运算是涉及到每一个数组元素的;数组与数组之间的比较是产生一个bool数组</li>
 <li>python的list与numpy的array的重要区别:list的切片是产生了一个新的list,而array的切片是产生一view,即对list的切片进行值的修改,不影响原list,但是nrray会影响</li>
@@ -627,7 +627,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-numpy-random"><span class="nav-number">1.</span> <span class="nav-text">1. numpy.random</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#numpy-random-rand"><span class="nav-number">1.1.</span> <span class="nav-text">numpy.random.rand()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#numpy-random-randn"><span class="nav-number">1.2.</span> <span class="nav-text">numpy.random.randn()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#numpy-random-randint"><span class="nav-number">1.3.</span> <span class="nav-text">numpy.random.randint()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#numpy-random-random-sample"><span class="nav-number">1.4.</span> <span class="nav-text">numpy.random.random_sample()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#numpy-random-random"><span class="nav-number">1.5.</span> <span class="nav-text">numpy.random.random()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#numpy-random-ranf"><span class="nav-number">1.6.</span> <span class="nav-text">numpy.random.ranf()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#numpy-random-sample"><span class="nav-number">1.7.</span> <span class="nav-text">numpy.random.sample()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#numpy-random-choice"><span class="nav-number">1.8.</span> <span class="nav-text">numpy.random.choice()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#numpy-random-seed"><span class="nav-number">1.9.</span> <span class="nav-text">numpy.random.seed</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-其他"><span class="nav-number">2.</span> <span class="nav-text">2.其他</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#numpy-where"><span class="nav-number">2.1.</span> <span class="nav-text">numpy.where()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#numpy-cumsum"><span class="nav-number">2.2.</span> <span class="nav-text">numpy.cumsum()</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#numpy-random"><span class="nav-number">1.</span> <span class="nav-text">numpy.random</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#numpy-random-rand"><span class="nav-number">1.1.</span> <span class="nav-text">numpy.random.rand()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#numpy-random-randn"><span class="nav-number">1.2.</span> <span class="nav-text">numpy.random.randn()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#numpy-random-randint"><span class="nav-number">1.3.</span> <span class="nav-text">numpy.random.randint()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#numpy-random-random-sample"><span class="nav-number">1.4.</span> <span class="nav-text">numpy.random.random_sample()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#numpy-random-random"><span class="nav-number">1.5.</span> <span class="nav-text">numpy.random.random()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#numpy-random-ranf"><span class="nav-number">1.6.</span> <span class="nav-text">numpy.random.ranf()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#numpy-random-sample"><span class="nav-number">1.7.</span> <span class="nav-text">numpy.random.sample()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#numpy-random-choice"><span class="nav-number">1.8.</span> <span class="nav-text">numpy.random.choice()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#numpy-random-seed"><span class="nav-number">1.9.</span> <span class="nav-text">numpy.random.seed</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他"><span class="nav-number">2.</span> <span class="nav-text">其他</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#numpy-where"><span class="nav-number">2.1.</span> <span class="nav-text">numpy.where()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#numpy-cumsum"><span class="nav-number">2.2.</span> <span class="nav-text">numpy.cumsum()</span></a></li></ol></li></ol></div>
             
 
           </div>
