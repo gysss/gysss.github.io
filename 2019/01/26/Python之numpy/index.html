@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next mist use-motion" lang="zh-Hans">
+<html class="theme-next gemini use-motion" lang="zh-Hans">
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -117,18 +117,18 @@
 
 
 
-<meta name="description" content="numpy.random 参考于:  https://docs.scipy.org/doc/numpy-1.15.1/reference/routines.random.html  https://www.jianshu.com/p/214798dd8f93numpy.random.rand() numpy.random.rand(d0,d1,…,dn) 根据给定维度生成[0,1)之间的数据，包含">
+<meta name="description" content="numpy.randomnumpy.random.rand() numpy.random.rand(d0,d1,…,dn) 根据给定维度生成[0,1)之间的数据，包含0，不包含1 返回值为指定维度的array  1234np.random.rand(3,2)#  array([[0.77342926, 0.13062061],#       [0.04889282, 0.66763161],#">
 <meta name="keywords" content="Python">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python的小伙伴们之numpy">
 <meta property="og:url" content="http://yoursite.com/2019/01/26/Python之numpy/index.html">
 <meta property="og:site_name" content="Gy&#39;s Blog">
-<meta property="og:description" content="numpy.random 参考于:  https://docs.scipy.org/doc/numpy-1.15.1/reference/routines.random.html  https://www.jianshu.com/p/214798dd8f93numpy.random.rand() numpy.random.rand(d0,d1,…,dn) 根据给定维度生成[0,1)之间的数据，包含">
+<meta property="og:description" content="numpy.randomnumpy.random.rand() numpy.random.rand(d0,d1,…,dn) 根据给定维度生成[0,1)之间的数据，包含0，不包含1 返回值为指定维度的array  1234np.random.rand(3,2)#  array([[0.77342926, 0.13062061],#       [0.04889282, 0.66763161],#">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-26T13:34:47.535Z">
+<meta property="og:updated_time" content="2019-01-26T14:20:50.206Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python的小伙伴们之numpy">
-<meta name="twitter:description" content="numpy.random 参考于:  https://docs.scipy.org/doc/numpy-1.15.1/reference/routines.random.html  https://www.jianshu.com/p/214798dd8f93numpy.random.rand() numpy.random.rand(d0,d1,…,dn) 根据给定维度生成[0,1)之间的数据，包含">
+<meta name="twitter:description" content="numpy.randomnumpy.random.rand() numpy.random.rand(d0,d1,…,dn) 根据给定维度生成[0,1)之间的数据，包含0，不包含1 返回值为指定维度的array  1234np.random.rand(3,2)#  array([[0.77342926, 0.13062061],#       [0.04889282, 0.66763161],#">
 
 
 
@@ -136,9 +136,9 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Mist',
+    scheme: 'Gemini',
     version: '5.1.4',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
     fancybox: true,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
@@ -318,7 +318,7 @@
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Gao Yuan">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/header.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
@@ -334,6 +334,11 @@
         
 
         <div class="post-meta">
+          
+            <i class="fa fa-thumb-tack"></i>
+            <font color="7D26CD">置顶</font>
+            <span class="post-meta-divider">|</span>
+          
           <span class="post-time">
             
               <span class="post-meta-item-icon">
@@ -364,6 +369,37 @@
           
 
           
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  990 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  4 分钟
+                </span>
+              
+            </div>
+          
 
           
 
@@ -380,8 +416,7 @@
       
 
       
-        <h2 id="numpy-random"><a href="#numpy-random" class="headerlink" title="numpy.random"></a>numpy.random</h2><ul>
-<li>参考于:<br>  <a href="https://docs.scipy.org/doc/numpy-1.15.1/reference/routines.random.html" target="_blank" rel="noopener">https://docs.scipy.org/doc/numpy-1.15.1/reference/routines.random.html</a><br>  <a href="https://www.jianshu.com/p/214798dd8f93" target="_blank" rel="noopener">https://www.jianshu.com/p/214798dd8f93</a><h3 id="numpy-random-rand"><a href="#numpy-random-rand" class="headerlink" title="numpy.random.rand()"></a>numpy.random.rand()</h3></li>
+        <h2 id="numpy-random"><a href="#numpy-random" class="headerlink" title="numpy.random"></a>numpy.random</h2><h3 id="numpy-random-rand"><a href="#numpy-random-rand" class="headerlink" title="numpy.random.rand()"></a>numpy.random.rand()</h3><ul>
 <li>numpy.random.rand(d0,d1,…,dn)</li>
 <li>根据给定维度生成[0,1)之间的数据，包含0，不包含1</li>
 <li>返回值为指定维度的array</li>
@@ -419,6 +454,11 @@
 <li>seed:指定seed值,将会得到相同的随机结果</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">np.random.seed(<span class="number">1000</span>)</span><br><span class="line">np.random.randint(<span class="number">5</span>)</span><br><span class="line"><span class="comment"># 3</span></span><br><span class="line"></span><br><span class="line">np.random.seed(<span class="number">1000</span>)</span><br><span class="line">np.random.randint(<span class="number">5</span>)</span><br><span class="line"><span class="comment"># 3</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>参考于:</p>
+<p>  <a href="https://docs.scipy.org/doc/numpy-1.15.1/reference/routines.random.html" target="_blank" rel="noopener">https://docs.scipy.org/doc/numpy-1.15.1/reference/routines.random.html</a><br>  <a href="https://www.jianshu.com/p/214798dd8f93" target="_blank" rel="noopener">https://www.jianshu.com/p/214798dd8f93</a></p>
+</li>
+</ul>
 <h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><ul>
 <li>astype操作总是会返回一个新的数组</li>
 <li>两个数组之间的运算是对应位置元素的运算;数组与标量的运算是涉及到每一个数组元素的;数组与数组之间的比较是产生一个bool数组</li>
@@ -554,6 +594,8 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
+              <img class="site-author-image" itemprop="image" src="/images/header.png" alt="Gao Yuan">
+            
               <p class="site-author-name" itemprop="name">Gao Yuan</p>
               <p class="site-description motion-element" itemprop="description"></p>
           </div>
@@ -611,6 +653,24 @@
 
           
           
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                推荐阅读
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.liaoxuefeng.com/" title="廖雪峰" target="_blank">廖雪峰</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.jiqizhixin.com" title="机器之心" target="_blank">机器之心</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
 
           
 
@@ -635,6 +695,13 @@
       <!--/noindex-->
       
 
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
       
 
     </div>
@@ -665,7 +732,7 @@
 
 
 
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
 
 
 
@@ -682,11 +749,6 @@
       </div>
     </footer>
 
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
     
 
     
@@ -771,6 +833,13 @@
 
   
   
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
 
   
   <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
