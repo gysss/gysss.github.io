@@ -106,7 +106,7 @@
 
 
 
-  <meta name="keywords" content="笔记,">
+  <meta name="keywords" content="Python,">
 
 
 
@@ -117,18 +117,18 @@
 
 
 
-<meta name="description" content="四大流派：符号主义(专家系统)，连接主义(人工神经网络)，行为主义(机器人)，统计主义(机器学习)机器学习：监督，半监督，非监督，强化，迁移线性回归 model： loss function： 参数更新：  逻辑回归 model： loss function： 参数更新： 推导为什么不能用均方差代替交叉熵： Cascading logistic regression model：为了解决逻辑回归不">
-<meta name="keywords" content="笔记">
+<meta name="description" content="1. numpy.random 参考于:  https://docs.scipy.org/doc/numpy-1.15.1/reference/routines.random.html  https://www.jianshu.com/p/214798dd8f93numpy.random.rand() numpy.random.rand(d0,d1,…,dn) 根据给定维度生成[0,1)之间的数据">
+<meta name="keywords" content="Python">
 <meta property="og:type" content="article">
-<meta property="og:title" content="人工智能复习笔记">
-<meta property="og:url" content="http://yoursite.com/2019/01/26/人工智能复习笔记/index.html">
+<meta property="og:title" content="Python的小伙伴们之numpy">
+<meta property="og:url" content="http://yoursite.com/2019/01/26/Python之numpy/index.html">
 <meta property="og:site_name" content="Gy&#39;s Blog">
-<meta property="og:description" content="四大流派：符号主义(专家系统)，连接主义(人工神经网络)，行为主义(机器人)，统计主义(机器学习)机器学习：监督，半监督，非监督，强化，迁移线性回归 model： loss function： 参数更新：  逻辑回归 model： loss function： 参数更新： 推导为什么不能用均方差代替交叉熵： Cascading logistic regression model：为了解决逻辑回归不">
+<meta property="og:description" content="1. numpy.random 参考于:  https://docs.scipy.org/doc/numpy-1.15.1/reference/routines.random.html  https://www.jianshu.com/p/214798dd8f93numpy.random.rand() numpy.random.rand(d0,d1,…,dn) 根据给定维度生成[0,1)之间的数据">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-26T05:46:10.730Z">
+<meta property="og:updated_time" content="2019-01-26T13:31:27.480Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="人工智能复习笔记">
-<meta name="twitter:description" content="四大流派：符号主义(专家系统)，连接主义(人工神经网络)，行为主义(机器人)，统计主义(机器学习)机器学习：监督，半监督，非监督，强化，迁移线性回归 model： loss function： 参数更新：  逻辑回归 model： loss function： 参数更新： 推导为什么不能用均方差代替交叉熵： Cascading logistic regression model：为了解决逻辑回归不">
+<meta name="twitter:title" content="Python的小伙伴们之numpy">
+<meta name="twitter:description" content="1. numpy.random 参考于:  https://docs.scipy.org/doc/numpy-1.15.1/reference/routines.random.html  https://www.jianshu.com/p/214798dd8f93numpy.random.rand() numpy.random.rand(d0,d1,…,dn) 根据给定维度生成[0,1)之间的数据">
 
 
 
@@ -158,13 +158,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/01/26/人工智能复习笔记/">
+  <link rel="canonical" href="http://yoursite.com/2019/01/26/Python之numpy/">
 
 
 
 
 
-  <title>人工智能复习笔记 | Gy's Blog</title>
+  <title>Python的小伙伴们之numpy | Gy's Blog</title>
   
 
 
@@ -313,7 +313,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/26/人工智能复习笔记/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/26/Python之numpy/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Gao Yuan">
@@ -330,7 +330,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">人工智能复习笔记</h1>
+          <h1 class="post-title" itemprop="name headline">Python的小伙伴们之numpy</h1>
         
 
         <div class="post-meta">
@@ -342,7 +342,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-26T12:02:44+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-26T21:29:15+08:00">
                 2019-01-26
               </time>
             
@@ -380,109 +380,77 @@
       
 
       
-        <h3 id="四大流派：符号主义-专家系统-，连接主义-人工神经网络-，行为主义-机器人-，统计主义-机器学习"><a href="#四大流派：符号主义-专家系统-，连接主义-人工神经网络-，行为主义-机器人-，统计主义-机器学习" class="headerlink" title="四大流派：符号主义(专家系统)，连接主义(人工神经网络)，行为主义(机器人)，统计主义(机器学习)"></a>四大流派：符号主义(专家系统)，连接主义(人工神经网络)，行为主义(机器人)，统计主义(机器学习)</h3><h3 id="机器学习：监督，半监督，非监督，强化，迁移"><a href="#机器学习：监督，半监督，非监督，强化，迁移" class="headerlink" title="机器学习：监督，半监督，非监督，强化，迁移"></a>机器学习：监督，半监督，非监督，强化，迁移</h3><h2 id="线性回归"><a href="#线性回归" class="headerlink" title="线性回归"></a>线性回归</h2><ul>
-<li>model：</li>
-<li>loss function：</li>
-<li>参数更新：</li>
+        <h2 id="1-numpy-random"><a href="#1-numpy-random" class="headerlink" title="1. numpy.random"></a>1. numpy.random</h2><ul>
+<li>参考于:<br>  <a href="https://docs.scipy.org/doc/numpy-1.15.1/reference/routines.random.html" target="_blank" rel="noopener">https://docs.scipy.org/doc/numpy-1.15.1/reference/routines.random.html</a><br>  <a href="https://www.jianshu.com/p/214798dd8f93" target="_blank" rel="noopener">https://www.jianshu.com/p/214798dd8f93</a><h3 id="numpy-random-rand"><a href="#numpy-random-rand" class="headerlink" title="numpy.random.rand()"></a>numpy.random.rand()</h3></li>
+<li>numpy.random.rand(d0,d1,…,dn)</li>
+<li>根据给定维度生成[0,1)之间的数据，包含0，不包含1</li>
+<li>返回值为指定维度的array</li>
 </ul>
-<h2 id="逻辑回归"><a href="#逻辑回归" class="headerlink" title="逻辑回归"></a>逻辑回归</h2><ul>
-<li>model：</li>
-<li>loss function：</li>
-<li>参数更新：</li>
-<li>推导为什么不能用均方差代替交叉熵：</li>
-<li>Cascading logistic regression model：为了解决逻辑回归不能处理异或问题，将多个逻辑回归连接起来，一部分负责特征转换，一部分负责分类，这样就就解决了异或问题；这样的每一个逻辑回归就是神经元，串起来形成了神经网络</li>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">np.random.rand(<span class="number">3</span>,<span class="number">2</span>)</span><br><span class="line"><span class="comment">#  array([[0.77342926, 0.13062061],</span></span><br><span class="line"><span class="comment">#       [0.04889282, 0.66763161],</span></span><br><span class="line"><span class="comment">#       [0.72599757, 0.27826069]])</span></span><br></pre></td></tr></table></figure>
+<h3 id="numpy-random-randn"><a href="#numpy-random-randn" class="headerlink" title="numpy.random.randn()"></a>numpy.random.randn()</h3><ul>
+<li>numpy.random.randn(d0,d1,…,dn)</li>
+<li>返回一个或一组样本，具有标准正态分布。</li>
+<li>返回值为指定维度的array</li>
 </ul>
-<h3 id="如何加快模型训练"><a href="#如何加快模型训练" class="headerlink" title="如何加快模型训练"></a>如何加快模型训练</h3><ul>
-<li>1特征缩放，特征归一化 2改变梯度下降方法：随机梯度下降，批量梯度下降 3微调学习率</li>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">np.random.randn()   <span class="comment"># 没有参数时,返回单个数</span></span><br><span class="line"><span class="comment"># -1.3281108519652927</span></span><br><span class="line"></span><br><span class="line">np.random.randn(<span class="number">3</span>,<span class="number">2</span>)</span><br><span class="line"><span class="comment"># array([[ 2.11802305,  2.85387116],</span></span><br><span class="line"><span class="comment">#       [-0.01947161, -2.09343863],</span></span><br><span class="line"><span class="comment">#       [-1.96342724,  0.01979386]])</span></span><br></pre></td></tr></table></figure>
+<h3 id="numpy-random-randint"><a href="#numpy-random-randint" class="headerlink" title="numpy.random.randint()"></a>numpy.random.randint()</h3><ul>
+<li>numpy.random.randint(low, high=None, size=None, dtype=’l’)</li>
+<li>返回随机整数，范围区间为[low,high），包含low，不包含high</li>
+<li>dtype为数据类型,默认是np.int</li>
+<li>没有high时,默认的是[0,low)</li>
 </ul>
-<h3 id="什么是机器学习"><a href="#什么是机器学习" class="headerlink" title="什么是机器学习"></a>什么是机器学习</h3><p>对于某类任务T和性能度量P，一个计算机程序被认为可以从经验E中学习是指，通过经验E改进后，它在任务T上由性能度量P衡量的性能有所提升</p>
-<h2 id="优化算法"><a href="#优化算法" class="headerlink" title="优化算法"></a>优化算法</h2><h3 id="损失函数"><a href="#损失函数" class="headerlink" title="损失函数"></a>损失函数</h3><ul>
-<li>平方损失函数更适合输出为连续，并且最后一层不含Sigmoid或Softmax激活函数的神经网络；交叉熵损失则更适合二分类或多分类的场景。</li>
-<li>均方差：</li>
-<li>交叉熵：</li>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">np.random.randint(<span class="number">2</span>, size = <span class="number">10</span>)</span><br><span class="line"><span class="comment"># array([1, 1, 1, 1, 0, 1, 1, 0, 1, 0])</span></span><br><span class="line"></span><br><span class="line">np.random.randint(<span class="number">1</span>, <span class="number">5</span>, size = (<span class="number">2</span>,<span class="number">4</span>))</span><br><span class="line"><span class="comment"># array([[3, 1, 2, 2],</span></span><br><span class="line"><span class="comment">#       [3, 2, 4, 1]])</span></span><br></pre></td></tr></table></figure>
+<h3 id="numpy-random-random-sample"><a href="#numpy-random-random-sample" class="headerlink" title="numpy.random.random_sample()"></a>numpy.random.random_sample()</h3><h3 id="numpy-random-random"><a href="#numpy-random-random" class="headerlink" title="numpy.random.random()"></a>numpy.random.random()</h3><h3 id="numpy-random-ranf"><a href="#numpy-random-ranf" class="headerlink" title="numpy.random.ranf()"></a>numpy.random.ranf()</h3><h3 id="numpy-random-sample"><a href="#numpy-random-sample" class="headerlink" title="numpy.random.sample()"></a>numpy.random.sample()</h3><ul>
+<li>numpy.random.—(size = None)</li>
+<li>返回[0.0, 1.0]区间的浮点数</li>
 </ul>
-<h3 id="凸函数"><a href="#凸函数" class="headerlink" title="凸函数"></a>凸函数</h3><p>凸函数曲面上任意两点连接而成的线段，其上的任意一点都不会处于该函数曲面的下方</p>
-<h3 id="梯度下降"><a href="#梯度下降" class="headerlink" title="梯度下降"></a>梯度下降</h3><ul>
-<li>推导：</li>
-<li>经典的梯度下降法在每次对模型参数进行更新时，需要遍历所有的训练数据。当M很大时，这需要很大的计算量，耗费很长的计算时间，在实际应用中基本不可行。</li>
-<li>随机梯度下降法用单个训练数据即可对模型参数进行一次更新，大大加快了收敛速率。</li>
-<li>随机梯度下降法对梯度的估计常常出现偏差，造成目标函数曲线收敛得很不稳定，伴有剧烈波动，有时甚至出现不收敛的情况</li>
-<li>为了降低随机梯度的方差，从而使得迭代算法更加稳定，也为了充分利用高度优化的矩阵运算操作，在实际应用中我们会同时处理若干训练数据，该方法被称为小批量梯度下降法。</li>
-<li>小批量梯度下降的m通常选取2的幂次时能充分利用矩阵运算操作，先对数据进行随机排序，再顺序挑选m个训练数据，学习率通常先较大，后减小。</li>
-<li>AdaGrad方法采用历史梯度平方和，其公式为：</li>
-<li>RMSProp公式：</li>
-<li>Adam方法将惯性保持和环境感知这两个优点集于一身。一方面记录了过往梯度与当前梯度的平均，体现了惯性保持，一方面记录了过往梯度平方与当前梯度平方的平均，体现了环境感知。</li>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">np.random.random_sample()</span><br><span class="line"><span class="comment"># 0.43535270552664374</span></span><br><span class="line"></span><br><span class="line">np.random.ranf((<span class="number">3</span>,<span class="number">2</span>))</span><br><span class="line"><span class="comment"># array([[0.07730948, 0.19447818],</span></span><br><span class="line"><span class="comment">#       [0.66644615, 0.41688169],</span></span><br><span class="line"><span class="comment">#       [0.92430307, 0.78935612]])</span></span><br></pre></td></tr></table></figure>
+<h3 id="numpy-random-choice"><a href="#numpy-random-choice" class="headerlink" title="numpy.random.choice()"></a>numpy.random.choice()</h3><ul>
+<li>numpy.random.choice(a, size = None, replace = True, p = None)</li>
+<li>a:一位数组或一个int值,一维数组的话就是从数组中随机生成元素,int的话就类似于np.arange(a)</li>
+<li>size:int值或者int元组,为输出形状</li>
+<li>replace:是否可以出现重复值,默认为True,False的话就不允许有重复</li>
+<li>p:a中的每个数出现的概率,默认为均匀分布的</li>
+<li>返回值为指定维度的array</li>
 </ul>
-<h3 id="正则化"><a href="#正则化" class="headerlink" title="正则化"></a>正则化</h3><p>L1:<br>L2:</p>
-<h3 id="Dropout"><a href="#Dropout" class="headerlink" title="Dropout"></a>Dropout</h3><ul>
-<li>Dropout相当于每次迭代都在训练不同结构的神经网络，可以被认为是一种实用的大规模深度神经网络的模型集成算法，减少过拟合风险，增强泛化能力</li>
-<li>testing时没有dropout，training时dropout是p%的话，测试时所有的weights要乘以1-p%</li>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 生成大小为3,范围为np.arange(5)</span></span><br><span class="line">np.random.choice(<span class="number">5</span>,<span class="number">3</span>)</span><br><span class="line"><span class="comment"># array([4, 3, 3])</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 生成大小为3,范围为np.arange(5)的非均匀的</span></span><br><span class="line">np.random.choice(<span class="number">5</span>,<span class="number">3</span>,p = [<span class="number">0.1</span>, <span class="number">0</span>, <span class="number">0.6</span>, <span class="number">0.2</span>, <span class="number">0.1</span>])</span><br><span class="line"><span class="comment"># array([3, 0, 2])</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 由数组生成</span></span><br><span class="line">aa_milne_arr = [<span class="string">'pooh'</span>, <span class="string">'rabbit'</span>, <span class="string">'piglet'</span>, <span class="string">'Christopher'</span>]</span><br><span class="line">np.random.choice(aa_milne_arr, <span class="number">5</span>, p=[<span class="number">0.5</span>, <span class="number">0.1</span>, <span class="number">0.1</span>, <span class="number">0.3</span>])</span><br><span class="line"><span class="comment"># array(['pooh', 'Christopher', 'piglet', 'Christopher', 'pooh'],</span></span><br><span class="line"><span class="comment">#      dtype='&lt;U11')</span></span><br></pre></td></tr></table></figure>
+<h3 id="numpy-random-seed"><a href="#numpy-random-seed" class="headerlink" title="numpy.random.seed"></a>numpy.random.seed</h3><ul>
+<li>numpy.random.seed(seed = None)</li>
+<li>seed:指定seed值,将会得到相同的随机结果</li>
 </ul>
-<h3 id="过拟合和欠拟合"><a href="#过拟合和欠拟合" class="headerlink" title="过拟合和欠拟合"></a>过拟合和欠拟合</h3><ul>
-<li>欠拟合：高bais error，低variance error；过拟合：低bais error，高variance error</li>
-<li>Bias error  ≈ 训练集上的错误率，训练集上的错误率 = avoidable error + unavoidable error，Variance error ≈ 开发集（或测试集）上的表现比训练集上差多少 ，</li>
-<li>过拟合就是在训练集上的表现很好，但在测试集和新数据上的表现较差；欠拟合指的是模型在训练和预测时表现都不好的情况。</li>
-<li>降低过拟合方法：1获取更多数据2降低模型复杂度3正则化4集成学习方法5提前停止6dropout</li>
-<li>降低欠拟合方法：1添加新特征2增加模型复杂度3减小正则化系数4新的激活函数5自适应的学习率6选择合适的损失函数</li>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">np.random.seed(<span class="number">1000</span>)</span><br><span class="line">np.random.randint(<span class="number">5</span>)</span><br><span class="line"><span class="comment"># 3</span></span><br><span class="line"></span><br><span class="line">np.random.seed(<span class="number">1000</span>)</span><br><span class="line">np.random.randint(<span class="number">5</span>)</span><br><span class="line"><span class="comment"># 3</span></span><br></pre></td></tr></table></figure>
+<h2 id="2-其他"><a href="#2-其他" class="headerlink" title="2.其他"></a>2.其他</h2><ul>
+<li>astype操作总是会返回一个新的数组</li>
+<li>两个数组之间的运算是对应位置元素的运算;数组与标量的运算是涉及到每一个数组元素的;数组与数组之间的比较是产生一个bool数组</li>
+<li>python的list与numpy的array的重要区别:list的切片是产生了一个新的list,而array的切片是产生一view,即对list的切片进行值的修改,不影响原list,但是nrray会影响</li>
 </ul>
-<h2 id="神经网络"><a href="#神经网络" class="headerlink" title="神经网络"></a>神经网络</h2><ul>
-<li>反向传播用以更新模型参数;正向传播用以计算loss</li>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">list1 = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]</span><br><span class="line">arr1 = np.array(list1)</span><br><span class="line">list2 = list1[:<span class="number">3</span>]</span><br><span class="line">arr2 = arr1[:<span class="number">3</span>]</span><br><span class="line">arr2[<span class="number">0</span>] = <span class="number">1234</span></span><br><span class="line">list2[<span class="number">0</span>] = <span class="number">1234</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># list1:[1,2,3,4,5,6]</span></span><br><span class="line"><span class="comment"># list2:[1234, 2, 3]</span></span><br><span class="line"><span class="comment"># arr1:array([1234,    2,    3,    4,    5,    6])</span></span><br><span class="line"><span class="comment"># arr2:array([1234,    2,    3])</span></span><br></pre></td></tr></table></figure>
+<h3 id="numpy-where"><a href="#numpy-where" class="headerlink" title="numpy.where()"></a>numpy.where()</h3><ul>
+<li>numpy.where(condition[, x, y])</li>
+<li>condition:条件,数组的形式,满足时返回x的对应值,不满足时返回y</li>
+<li>x,y:数组形式</li>
 </ul>
-<h3 id="激活函数"><a href="#激活函数" class="headerlink" title="激活函数"></a>激活函数</h3><ul>
-<li>sigmoid及其导数：</li>
-<li>tanh及其导数：</li>
-<li>softmax及其导数：</li>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">x = np.arange(<span class="number">9.</span>).reshape(<span class="number">3</span>, <span class="number">3</span>)</span><br><span class="line">np.where(x&lt;<span class="number">5</span>, x, <span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># array([[0., 1., 2.],</span></span><br><span class="line"><span class="comment">#       [3., 4., 0.],</span></span><br><span class="line"><span class="comment">#       [0., 0., 0.]])</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>numpy.any检测数组中只要有一个ture返回就是true，而numpy.all检测数组中都是true才会返回true</li>
 </ul>
-<h3 id="sigmoid梯度消失的原因"><a href="#sigmoid梯度消失的原因" class="headerlink" title="sigmoid梯度消失的原因"></a>sigmoid梯度消失的原因</h3><ul>
-<li>根据其导函数可知，当z很大或很小时，f(z)趋近于0，会造成梯度消失。</li>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">bools = np.array([<span class="keyword">False</span>, <span class="keyword">False</span>, <span class="keyword">True</span>, <span class="keyword">False</span>])</span><br><span class="line">np.any(bools) <span class="comment"># True</span></span><br><span class="line">np.all(bools) <span class="comment"># False</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>numpy.unique 能返回排好序且不重复的值,相当于Python的sort(set(x))</li>
 </ul>
-<h3 id="Relu相较于sigmoid的优点及局限性"><a href="#Relu相较于sigmoid的优点及局限性" class="headerlink" title="Relu相较于sigmoid的优点及局限性"></a>Relu相较于sigmoid的优点及局限性</h3><ul>
-<li>Relu是Maxout的一个特殊情况</li>
-<li>优点：1.sigmoid和tanh都需要进行指数的计算，复杂度高，而relu只需要一个阈值就可激活；2.relu的非饱和性可以有效地解决梯度消失的问题；3.relu的单侧抑制提供了网络的稀疏表达能力</li>
-<li>局限性：在训练过程中导致神经元死亡的问题，该神经元的梯度永远为0，不再被激活，解决方法是relu的变种形式</li>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ints = np.array([<span class="number">3</span>, <span class="number">3</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">4</span>, <span class="number">4</span>])</span><br><span class="line">np.unique(ints)</span><br><span class="line"><span class="comment"># array([1, 2, 3, 4])</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>numpy.in1d 测试一个数组的值是否在另一个数组里，返回一个布尔数组</li>
 </ul>
-<h3 id="神经网络的训练技巧"><a href="#神经网络的训练技巧" class="headerlink" title="神经网络的训练技巧"></a>神经网络的训练技巧</h3><ul>
-<li>参数不能全部初始化为0，因为神经元结构相同，输入输出相同，无法训练，需要随机化参数来打破对称性；</li>
-<li>如果不进行归一化处理，会致使网络在每一次迭代中都需要拟合不同的数据分布，增大训练的复杂度以及过拟合的风险。归一化的方法是：针对每一批数据，在网络的每一层输入之前增加归一化处理（均值为0，标准差为1），公式为：</li>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">values = np.array([<span class="number">6</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">5</span>, <span class="number">6</span>])</span><br><span class="line">np.in1d(values, [<span class="number">2</span>, <span class="number">3</span>, <span class="number">6</span>])</span><br><span class="line"><span class="comment"># array([ True, False, False,  True,  True, False,  True], dtype=bool)</span></span><br></pre></td></tr></table></figure>
+<h3 id="numpy-cumsum"><a href="#numpy-cumsum" class="headerlink" title="numpy.cumsum()"></a>numpy.cumsum()</h3><ul>
+<li>numpy.cumsum(a, axis=None, dtype=None, out=None)</li>
+<li>返回给定轴上的累加和</li>
+<li>a:数组形式</li>
+<li>axis:给定轴,默认是一维地去累加</li>
+<li>返回一个ndarray</li>
 </ul>
-<h2 id="CNN"><a href="#CNN" class="headerlink" title="CNN"></a>CNN</h2><ul>
-<li>计算公式：</li>
-</ul>
-<h3 id="为什么选择CNN"><a href="#为什么选择CNN" class="headerlink" title="为什么选择CNN"></a>为什么选择CNN</h3><p>1.一些特征比整张图片要小很多，不需要看整张图–卷积 2.一些特征会在一张图的不同区域出现–卷积 3.二次抽样不会改变对象–池化</p>
-<h3 id="稀疏交互和参数共享"><a href="#稀疏交互和参数共享" class="headerlink" title="稀疏交互和参数共享"></a>稀疏交互和参数共享</h3><p>稀疏交互的物理意义是先学习局部特征，再将局部特征组合为更复杂更抽象的特征。参数共享的物理意义是卷积层具有平移等变性。</p>
-<h3 id="池化"><a href="#池化" class="headerlink" title="池化"></a>池化</h3><p>包括均值池化和最大值池化，本质是降采样，而且能够保持对平移、伸缩、旋转操作的不变性。</p>
-<h3 id="为什么要deep"><a href="#为什么要deep" class="headerlink" title="为什么要deep"></a>为什么要deep</h3><ul>
-<li>deep-&gt;模块化-&gt;更少的训练数据</li>
-<li>类似于决策树，每一层的每一个神经元相当于一个基本的分类器，后面的层的神经元使用前一层的来建立一个新的分类器。复杂的问题模块化</li>
-</ul>
-<h2 id="RNN"><a href="#RNN" class="headerlink" title="RNN"></a>RNN</h2><h3 id="序列数据举例"><a href="#序列数据举例" class="headerlink" title="序列数据举例"></a>序列数据举例</h3><p>语音识别，情感分析，DNA序列分析，机器翻译等</p>
-<h3 id="LSTM"><a href="#LSTM" class="headerlink" title="LSTM"></a>LSTM</h3><ul>
-<li>输入门，输出门，遗忘门，输入门控制当前计算的新状态有多大程度更新到记忆单元中，遗忘门控制前一步记忆单元中的信息有多大程度被遗忘掉，输出门控制当前的输出有多大程度取决于当前的记忆单元。</li>
-<li>遗忘门接近于1时，实现记忆功能，遗忘门接近于0时，实现的是遗忘功能。</li>
-<li>三个门的激活函数为sigmoid，sigmoid函数输出在0~1之间，符合门控的物理定义。在生成候选记忆时，使用tanh，输出在-1~1之间，大多数场景下分布为0为中心相吻合，且在0附近有更大的梯度，收敛更快。</li>
-<li>4个输入，1个输出</li>
-<li>long short-term memory 可以理解为：比较长的-短时-记忆</li>
-<li>LSTM可以解决RNN的梯度消失，但不能解决梯度爆炸</li>
-</ul>
-<h3 id="RNN对比CNN等前馈神经网络"><a href="#RNN对比CNN等前馈神经网络" class="headerlink" title="RNN对比CNN等前馈神经网络"></a>RNN对比CNN等前馈神经网络</h3><ul>
-<li>一般的前馈神经网络，如CNN，可以捕捉到局部特征，但是序列中的依赖关系很难被学到，而RNN第t层的隐含状态h编码了序列中前t个输入的信息，最后一层的状态h编码了整个序列的信息，RNN具备对序列顺序信息的刻画能力，往往能得到更准确的结果。</li>
-</ul>
-<h3 id="RNN梯度消失、梯度爆炸问题"><a href="#RNN梯度消失、梯度爆炸问题" class="headerlink" title="RNN梯度消失、梯度爆炸问题"></a>RNN梯度消失、梯度爆炸问题</h3><ul>
-<li>由于预测的误差是沿着神经网络的每一层反向传播的，因此当雅克比矩阵的最大特征值大于1时，随着离输出越来越远，每层的梯度大小会呈指数增长，导致梯度爆炸；反之，若雅克比矩阵的最大特征值小于1，梯度的大小会呈指数缩小，产生梯度消失。</li>
-<li>梯度爆炸的问题可以通过梯度裁剪来缓解，即当梯度的范式大于某个给定值 时，对梯度进行等比收缩。</li>
-<li>LSTM及GRU通过加入门控机制，很大程度上弥补了梯度消失带来的损失</li>
-</ul>
-<h2 id="迁移学习"><a href="#迁移学习" class="headerlink" title="迁移学习"></a>迁移学习</h2><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><ul>
-<li>把已学训练好的模型参数迁移到新的模型来帮助新模型训练，通过迁移学习我们可以将已经学到的模型参数（也可理解为模型学到的知识）通过某种方式来分享给新模型从而加快并优化模型的学习效率不用像大多数网络那样从零学习。</li>
-</ul>
-<h3 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h3><ul>
-<li>同样的任务，不同的分布，或者不同的任务，同样的分布</li>
-<li>源数据：有标签；目标数据：有标签(很少)；比如：源数据为许多人的语音，目标数据为特定用户的语音；fine-tuning，multitask lear</li>
-<li>源数据：有标签；目标数据：无标签；比如：源数据为mnist，目标数据为一些不带标签的数字图像；domain-adversarial training,zero-shot learining</li>
-<li>源数据：无标签；目标数据：有标签；self-taught learning</li>
-<li>源数据：无标签；目标数据：无标签；self-taught clustering</li>
-</ul>
-
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">a = np.array([[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>], [<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]])</span><br><span class="line"><span class="comment"># array([[1, 2, 3],</span></span><br><span class="line"><span class="comment">#       [4, 5, 6]])</span></span><br><span class="line"></span><br><span class="line">np.cumsum(a)</span><br><span class="line"><span class="comment"># array([ 1,  3,  6, 10, 15, 21])</span></span><br><span class="line"></span><br><span class="line">np.cumsum(a,axis=<span class="number">0</span>)</span><br><span class="line"><span class="comment"># array([[1, 2, 3],</span></span><br><span class="line"><span class="comment">#       [5, 7, 9]])</span></span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -499,7 +467,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/笔记/" rel="tag"># 笔记</a>
+            <a href="/tags/Python/" rel="tag"># Python</a>
           
         </div>
       
@@ -512,8 +480,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/01/25/机器学习复习/" rel="next" title="机器学习复习笔记">
-                <i class="fa fa-chevron-left"></i> 机器学习复习笔记
+              <a href="/2019/01/26/人工智能复习笔记/" rel="next" title="人工智能复习笔记">
+                <i class="fa fa-chevron-left"></i> 人工智能复习笔记
               </a>
             
           </div>
@@ -521,10 +489,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/01/26/Python之numpy/" rel="prev" title="Python的小伙伴们之numpy">
-                Python的小伙伴们之numpy <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -663,7 +627,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#四大流派：符号主义-专家系统-，连接主义-人工神经网络-，行为主义-机器人-，统计主义-机器学习"><span class="nav-number">1.</span> <span class="nav-text">四大流派：符号主义(专家系统)，连接主义(人工神经网络)，行为主义(机器人)，统计主义(机器学习)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#机器学习：监督，半监督，非监督，强化，迁移"><span class="nav-number">2.</span> <span class="nav-text">机器学习：监督，半监督，非监督，强化，迁移</span></a></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#线性回归"><span class="nav-number"></span> <span class="nav-text">线性回归</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#逻辑回归"><span class="nav-number"></span> <span class="nav-text">逻辑回归</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#如何加快模型训练"><span class="nav-number">1.</span> <span class="nav-text">如何加快模型训练</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是机器学习"><span class="nav-number">2.</span> <span class="nav-text">什么是机器学习</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#优化算法"><span class="nav-number"></span> <span class="nav-text">优化算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#损失函数"><span class="nav-number">1.</span> <span class="nav-text">损失函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#凸函数"><span class="nav-number">2.</span> <span class="nav-text">凸函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#梯度下降"><span class="nav-number">3.</span> <span class="nav-text">梯度下降</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#正则化"><span class="nav-number">4.</span> <span class="nav-text">正则化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Dropout"><span class="nav-number">5.</span> <span class="nav-text">Dropout</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#过拟合和欠拟合"><span class="nav-number">6.</span> <span class="nav-text">过拟合和欠拟合</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#神经网络"><span class="nav-number"></span> <span class="nav-text">神经网络</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#激活函数"><span class="nav-number">1.</span> <span class="nav-text">激活函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sigmoid梯度消失的原因"><span class="nav-number">2.</span> <span class="nav-text">sigmoid梯度消失的原因</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Relu相较于sigmoid的优点及局限性"><span class="nav-number">3.</span> <span class="nav-text">Relu相较于sigmoid的优点及局限性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#神经网络的训练技巧"><span class="nav-number">4.</span> <span class="nav-text">神经网络的训练技巧</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CNN"><span class="nav-number"></span> <span class="nav-text">CNN</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么选择CNN"><span class="nav-number">1.</span> <span class="nav-text">为什么选择CNN</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#稀疏交互和参数共享"><span class="nav-number">2.</span> <span class="nav-text">稀疏交互和参数共享</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#池化"><span class="nav-number">3.</span> <span class="nav-text">池化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么要deep"><span class="nav-number">4.</span> <span class="nav-text">为什么要deep</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RNN"><span class="nav-number"></span> <span class="nav-text">RNN</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#序列数据举例"><span class="nav-number">1.</span> <span class="nav-text">序列数据举例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LSTM"><span class="nav-number">2.</span> <span class="nav-text">LSTM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RNN对比CNN等前馈神经网络"><span class="nav-number">3.</span> <span class="nav-text">RNN对比CNN等前馈神经网络</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RNN梯度消失、梯度爆炸问题"><span class="nav-number">4.</span> <span class="nav-text">RNN梯度消失、梯度爆炸问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#迁移学习"><span class="nav-number"></span> <span class="nav-text">迁移学习</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#概念"><span class="nav-number">1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#应用场景"><span class="nav-number">2.</span> <span class="nav-text">应用场景</span></a></li></ol></li></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-numpy-random"><span class="nav-number">1.</span> <span class="nav-text">1. numpy.random</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#numpy-random-rand"><span class="nav-number">1.1.</span> <span class="nav-text">numpy.random.rand()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#numpy-random-randn"><span class="nav-number">1.2.</span> <span class="nav-text">numpy.random.randn()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#numpy-random-randint"><span class="nav-number">1.3.</span> <span class="nav-text">numpy.random.randint()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#numpy-random-random-sample"><span class="nav-number">1.4.</span> <span class="nav-text">numpy.random.random_sample()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#numpy-random-random"><span class="nav-number">1.5.</span> <span class="nav-text">numpy.random.random()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#numpy-random-ranf"><span class="nav-number">1.6.</span> <span class="nav-text">numpy.random.ranf()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#numpy-random-sample"><span class="nav-number">1.7.</span> <span class="nav-text">numpy.random.sample()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#numpy-random-choice"><span class="nav-number">1.8.</span> <span class="nav-text">numpy.random.choice()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#numpy-random-seed"><span class="nav-number">1.9.</span> <span class="nav-text">numpy.random.seed</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-其他"><span class="nav-number">2.</span> <span class="nav-text">2.其他</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#numpy-where"><span class="nav-number">2.1.</span> <span class="nav-text">numpy.where()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#numpy-cumsum"><span class="nav-number">2.2.</span> <span class="nav-text">numpy.cumsum()</span></a></li></ol></li></ol></div>
             
 
           </div>
