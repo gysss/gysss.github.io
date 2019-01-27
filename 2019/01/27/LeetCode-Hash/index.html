@@ -1,0 +1,1574 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-bounce.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="LeetCode,刷题,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="705. 设计哈希集合难度:容易要求 不使用任何内建的哈希表库设计一个哈希集合具体地说，你的设计应该包含以下的功能add(value)：向哈希集合中插入一个值。contains(value) ：返回哈希集合中是否存在这个值。remove(value)：将给定值从哈希集合中删除。如果哈希集合中没有这个值，什么也不做。  示例 MyHashSet hashSet = new MyHashSet();h">
+<meta name="keywords" content="LeetCode,刷题">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LeetCode之哈希表">
+<meta property="og:url" content="http://yoursite.com/2019/01/27/LeetCode-Hash/index.html">
+<meta property="og:site_name" content="Gy&#39;s Blog">
+<meta property="og:description" content="705. 设计哈希集合难度:容易要求 不使用任何内建的哈希表库设计一个哈希集合具体地说，你的设计应该包含以下的功能add(value)：向哈希集合中插入一个值。contains(value) ：返回哈希集合中是否存在这个值。remove(value)：将给定值从哈希集合中删除。如果哈希集合中没有这个值，什么也不做。  示例 MyHashSet hashSet = new MyHashSet();h">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-01-27T07:23:42.064Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="LeetCode之哈希表">
+<meta name="twitter:description" content="705. 设计哈希集合难度:容易要求 不使用任何内建的哈希表库设计一个哈希集合具体地说，你的设计应该包含以下的功能add(value)：向哈希集合中插入一个值。contains(value) ：返回哈希集合中是否存在这个值。remove(value)：将给定值从哈希集合中删除。如果哈希集合中没有这个值，什么也不做。  示例 MyHashSet hashSet = new MyHashSet();h">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/01/27/LeetCode-Hash/">
+
+
+
+
+
+  <title>LeetCode之哈希表 | Gy's Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Gy's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/27/LeetCode-Hash/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Gao Yuan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Gy's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">LeetCode之哈希表</h1>
+        
+
+        <div class="post-meta">
+          
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-27T15:19:50+08:00">
+                2019-01-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/01/27/LeetCode-Hash/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/01/27/LeetCode-Hash/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2019/01/27/LeetCode-Hash/" class="leancloud_visitors" data-flag-title="LeetCode之哈希表">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">热度&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+                <span>℃</span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  5.1k 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  23 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="705-设计哈希集合"><a href="#705-设计哈希集合" class="headerlink" title="705. 设计哈希集合"></a>705. 设计哈希集合</h1><h3 id="难度-容易"><a href="#难度-容易" class="headerlink" title="难度:容易"></a>难度:容易</h3><h3 id="要求"><a href="#要求" class="headerlink" title="要求"></a>要求</h3><ul>
+<li>不使用任何内建的哈希表库设计一个哈希集合<br>具体地说，你的设计应该包含以下的功能<br>add(value)：向哈希集合中插入一个值。<br>contains(value) ：返回哈希集合中是否存在这个值。<br>remove(value)：将给定值从哈希集合中删除。如果哈希集合中没有这个值，什么也不做。</li>
+</ul>
+<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><ul>
+<li>MyHashSet hashSet = new MyHashSet();<br>hashSet.add(1);<br>hashSet.add(2);<br>hashSet.contains(1);    // 返回 true<br>hashSet.contains(3);    // 返回 false (未找到)<br>hashSet.add(2);<br>hashSet.contains(2);    // 返回 true<br>hashSet.remove(2);<br>hashSet.contains(2);    // 返回  false (已经被删除)</li>
+</ul>
+<h3 id="python代码"><a href="#python代码" class="headerlink" title="python代码"></a>python代码</h3><ul>
+<li>思路：利用字典，add时将key作为键，其对应的值设为1；remove时，将key对应的值设为0；检查是否存在时，如果字典中有key，返回其值是否等于1，若无则返回False</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyHashSet</span><span class="params">(object)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        Initialize your data structure here.</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        self.data  = &#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">add</span><span class="params">(self, key)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type key: int</span></span><br><span class="line"><span class="string">        :rtype: void</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        self.data[key] = <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">remove</span><span class="params">(self, key)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type key: int</span></span><br><span class="line"><span class="string">        :rtype: void</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        self.data[key] = <span class="number">0</span> </span><br><span class="line">        </span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">contains</span><span class="params">(self, key)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        Returns true if this set contains the specified element</span></span><br><span class="line"><span class="string">        :type key: int</span></span><br><span class="line"><span class="string">        :rtype: bool</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="keyword">if</span> key <span class="keyword">in</span> self.data:</span><br><span class="line">            <span class="keyword">return</span> self.data[key] == <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">False</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Your MyHashSet object will be instantiated and called as such:</span></span><br><span class="line"><span class="comment"># obj = MyHashSet()</span></span><br><span class="line"><span class="comment"># obj.add(key)</span></span><br><span class="line"><span class="comment"># obj.remove(key)</span></span><br><span class="line"><span class="comment"># param_3 = obj.contains(key</span></span><br></pre></td></tr></table></figure>
+<h3 id="C-代码"><a href="#C-代码" class="headerlink" title="C++代码"></a>C++代码</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyHashSet</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">/** Initialize your data structure here. */</span></span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">bool</span>&gt; data;</span><br><span class="line">    MyHashSet() &#123;</span><br><span class="line">        data = <span class="built_in">vector</span>&lt;<span class="keyword">bool</span>&gt;(<span class="number">1000001</span>,<span class="literal">false</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> key)</span> </span>&#123;</span><br><span class="line">        data[key]=<span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">remove</span><span class="params">(<span class="keyword">int</span> key)</span> </span>&#123;</span><br><span class="line">        data[key]=<span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/** Returns true if this set contains the specified element */</span></span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">contains</span><span class="params">(<span class="keyword">int</span> key)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> data[key];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Your MyHashSet object will be instantiated and called as such:</span></span><br><span class="line"><span class="comment"> * MyHashSet obj = new MyHashSet();</span></span><br><span class="line"><span class="comment"> * obj.add(key);</span></span><br><span class="line"><span class="comment"> * obj.remove(key);</span></span><br><span class="line"><span class="comment"> * bool param_3 = obj.contains(key);</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
+<h1 id="706-设计哈希映射"><a href="#706-设计哈希映射" class="headerlink" title="706. 设计哈希映射"></a>706. 设计哈希映射</h1><h3 id="难度-容易-1"><a href="#难度-容易-1" class="headerlink" title="难度:容易"></a>难度:容易</h3><h3 id="要求-1"><a href="#要求-1" class="headerlink" title="要求"></a>要求</h3><ul>
+<li>不使用任何内建的哈希表库设计一个哈希映射<br>具体地说，你的设计应该包含以下的功能:<br>put(key, value)：向哈希映射中插入(键,值)的数值对。如果键对应的值已经存在，更新这个值。<br>get(key)：返回给定的键所对应的值，如果映射中不包含这个键，返回-1。<br>remove(key)：如果映射中存在这个键，删除这个数值对。</li>
+</ul>
+<h3 id="示例-1"><a href="#示例-1" class="headerlink" title="示例"></a>示例</h3><ul>
+<li>MyHashMap hashMap = new MyHashMap();<br>hashMap.put(1, 1);<br>hashMap.put(2, 2);<br>hashMap.get(1);            // 返回 1<br>hashMap.get(3);            // 返回 -1 (未找到)<br>hashMap.put(2, 1);         // 更新已有的值<br>hashMap.get(2);            // 返回 1<br>hashMap.remove(2);         // 删除键为2的数据<br>hashMap.get(2);            // 返回 -1 (未找到) </li>
+</ul>
+<h3 id="Python代码"><a href="#Python代码" class="headerlink" title="Python代码"></a>Python代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyHashMap</span><span class="params">(object)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        Initialize your data structure here.</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        self.data = &#123;&#125;</span><br><span class="line">        </span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">put</span><span class="params">(self, key, value)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        value will always be non-negative.</span></span><br><span class="line"><span class="string">        :type key: int</span></span><br><span class="line"><span class="string">        :type value: int</span></span><br><span class="line"><span class="string">        :rtype: void</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        self.data[key] = value</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get</span><span class="params">(self, key)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        Returns the value to which the specified key is mapped, or -1 if this map contains no mapping for the key</span></span><br><span class="line"><span class="string">        :type key: int</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="keyword">if</span> key <span class="keyword">in</span> self.data:</span><br><span class="line">            <span class="keyword">return</span> self.data[key]</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">remove</span><span class="params">(self, key)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        Removes the mapping of the specified value key if this map contains a mapping for the key</span></span><br><span class="line"><span class="string">        :type key: int</span></span><br><span class="line"><span class="string">        :rtype: void</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="keyword">if</span> key <span class="keyword">in</span> self.data:</span><br><span class="line">            <span class="keyword">del</span> self.data[key]</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Your MyHashMap object will be instantiated and called as such:</span></span><br><span class="line"><span class="comment"># obj = MyHashMap()</span></span><br><span class="line"><span class="comment"># obj.put(key,value)</span></span><br><span class="line"><span class="comment"># param_2 = obj.get(key)</span></span><br><span class="line"><span class="comment"># obj.remove(key)</span></span><br></pre></td></tr></table></figure>
+<h1 id="217-存在重复元素"><a href="#217-存在重复元素" class="headerlink" title="217. 存在重复元素"></a>217. 存在重复元素</h1><h3 id="难度-容易-2"><a href="#难度-容易-2" class="headerlink" title="难度:容易"></a>难度:容易</h3><h3 id="要求-2"><a href="#要求-2" class="headerlink" title="要求"></a>要求</h3><ul>
+<li>给定一个整数数组，判断是否存在重复元素。<br>如果任何值在数组中出现至少两次，函数返回 true。如果数组中每个元素都不相同，则返回 false。</li>
+</ul>
+<h3 id="示例-2"><a href="#示例-2" class="headerlink" title="示例"></a>示例</h3><ul>
+<li>输入: [1,2,3,1]<br>输出: true</li>
+<li>输入: [1,2,3,4]<br>输出: false</li>
+</ul>
+<h3 id="Python代码-1"><a href="#Python代码-1" class="headerlink" title="Python代码"></a>Python代码</h3><ul>
+<li>我的</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">containsDuplicate</span><span class="params">(self, nums)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type nums: List[int]</span></span><br><span class="line"><span class="string">        :rtype: bool</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        len_1 = len(nums)</span><br><span class="line">        ans = set()</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> nums:</span><br><span class="line">            ans.add(i)</span><br><span class="line">        len_2 = len(ans)</span><br><span class="line">        <span class="keyword">return</span> (len_1 != len_2)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>大佬的</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">containsDuplicate</span><span class="params">(self, nums)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type nums: List[int]</span></span><br><span class="line"><span class="string">        :rtype: bool</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="keyword">return</span> len(set(nums)) != len(nums)</span><br></pre></td></tr></table></figure>
+<h1 id="136-只出现一次的数字"><a href="#136-只出现一次的数字" class="headerlink" title="136. 只出现一次的数字"></a>136. 只出现一次的数字</h1><h3 id="难度-容易-3"><a href="#难度-容易-3" class="headerlink" title="难度:容易"></a>难度:容易</h3><h3 id="要求-3"><a href="#要求-3" class="headerlink" title="要求"></a>要求</h3><ul>
+<li>给定一个非空整数数组，除了某个元素只出现一次以外，其余每个元素均出现两次。找出那个只出现了一次的元素。<br>说明：<br>你的算法应该具有线性时间复杂度。 你可以不使用额外空间来实现吗？</li>
+</ul>
+<h3 id="示例-3"><a href="#示例-3" class="headerlink" title="示例"></a>示例</h3><ul>
+<li>输入: [2,2,1]<br>输出: 1</li>
+<li>输入: [4,1,2,1,2]<br>输出: 4</li>
+</ul>
+<h3 id="Python代码-2"><a href="#Python代码-2" class="headerlink" title="Python代码"></a>Python代码</h3><ul>
+<li>我的：采用了字典统计每个数出现的次数，最后返回次数为1的</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">singleNumber</span><span class="params">(self, nums)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type nums: List[int]</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        count = &#123;&#125;</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> nums:</span><br><span class="line">            <span class="keyword">if</span> i <span class="keyword">not</span> <span class="keyword">in</span> count:</span><br><span class="line">                count[i] = <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                count[i] += <span class="number">1</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> count.keys():</span><br><span class="line">            <span class="keyword">if</span> count[j] == <span class="number">1</span>:</span><br><span class="line">                <span class="keyword">return</span> j</span><br></pre></td></tr></table></figure>
+<ul>
+<li>大佬的：利用了异或的性质，出现了两次的异或后为0，出现了一次的与0异或得本身，最后返回即可</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">singleNumber</span><span class="params">(self, nums)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type nums: List[int]</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        a=nums[<span class="number">0</span>]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,len(nums)):</span><br><span class="line">            a=a^nums[i]</span><br><span class="line">        <span class="keyword">return</span> a</span><br></pre></td></tr></table></figure>
+<h1 id="349-两个数组的交集"><a href="#349-两个数组的交集" class="headerlink" title="349. 两个数组的交集"></a>349. 两个数组的交集</h1><h3 id="难度-容易-4"><a href="#难度-容易-4" class="headerlink" title="难度:容易"></a>难度:容易</h3><h3 id="要求-4"><a href="#要求-4" class="headerlink" title="要求"></a>要求</h3><ul>
+<li>给定两个数组，编写一个函数来计算它们的交集。</li>
+</ul>
+<h3 id="示例-4"><a href="#示例-4" class="headerlink" title="示例"></a>示例</h3><ul>
+<li>输入: nums1 = [1,2,2,1], nums2 = [2,2]<br>输出: [2]</li>
+<li>输入: nums1 = [4,9,5], nums2 = [9,4,9,8,4]<br>输出: [9,4]</li>
+</ul>
+<h3 id="Python-代码"><a href="#Python-代码" class="headerlink" title="Python 代码"></a>Python 代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">intersection</span><span class="params">(self, nums1, nums2)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type nums1: List[int]</span></span><br><span class="line"><span class="string">        :type nums2: List[int]</span></span><br><span class="line"><span class="string">        :rtype: List[int]</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        nums1 = set(nums1)</span><br><span class="line">        nums2 = set(nums2)</span><br><span class="line">        </span><br><span class="line">        ans = []</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> nums2:</span><br><span class="line">            <span class="keyword">if</span> i <span class="keyword">in</span> nums1:</span><br><span class="line">                ans.append(i)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>
+<h1 id="202-快乐数"><a href="#202-快乐数" class="headerlink" title="202. 快乐数"></a>202. 快乐数</h1><h3 id="难度-容易-5"><a href="#难度-容易-5" class="headerlink" title="难度:容易"></a>难度:容易</h3><h3 id="要求-5"><a href="#要求-5" class="headerlink" title="要求"></a>要求</h3><ul>
+<li>编写一个算法来判断一个数是不是“快乐数”。<br>一个“快乐数”定义为：对于一个正整数，每一次将该数替换为它每个位置上的数字的平方和，<br>然后重复这个过程直到这个数变为 1，也可能是无限循环但始终变不到 1。如果可以变为 1，那么这个数就是快乐数。</li>
+</ul>
+<h3 id="示例-5"><a href="#示例-5" class="headerlink" title="示例"></a>示例</h3><ul>
+<li>输入: 19<br>输出: true<br>解释:<br>12 + 92 = 82<br>82 + 22 = 68<br>62 + 82 = 100<br>12 + 02 + 02 = 1</li>
+</ul>
+<h3 id="Python代码-3"><a href="#Python代码-3" class="headerlink" title="Python代码"></a>Python代码</h3><p>思路: 平方和会进入到循环中： 4 → 16 → 37 → 58 → 89 → 145 → 42 → 20 → 4，所以当平方和为这些循环中的值时，就不是快乐数，</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isHappy</span><span class="params">(self, n)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type n: int</span></span><br><span class="line"><span class="string">        :rtype: bool</span></span><br><span class="line"><span class="string">        """</span>  </span><br><span class="line">        list1 = [<span class="number">4</span>,<span class="number">16</span>, <span class="number">37</span>, <span class="number">58</span>, <span class="number">89</span>, <span class="number">145</span>,<span class="number">42</span>, <span class="number">20</span>]</span><br><span class="line">        <span class="keyword">while</span>(n != <span class="number">1</span>):</span><br><span class="line">            temp = <span class="number">0</span></span><br><span class="line">            <span class="keyword">while</span>(n&gt;<span class="number">0</span>):</span><br><span class="line">                temp += (n%<span class="number">10</span>) * (n%<span class="number">10</span>)</span><br><span class="line">                n = n/<span class="number">10</span></span><br><span class="line">            <span class="keyword">if</span> temp <span class="keyword">in</span> list1:</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">False</span></span><br><span class="line">            n = temp      </span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">True</span></span><br></pre></td></tr></table></figure>
+<h1 id="1-两数之和"><a href="#1-两数之和" class="headerlink" title="1. 两数之和"></a>1. 两数之和</h1><h3 id="难度-容易-6"><a href="#难度-容易-6" class="headerlink" title="难度:容易"></a>难度:容易</h3><h3 id="要求-6"><a href="#要求-6" class="headerlink" title="要求"></a>要求</h3><ul>
+<li>给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那两个整数，<br>并返回他们的数组下标。<br>你可以假设每种输入只会对应一个答案。但是，你不能重复利用这个数组中同样的元素。</li>
+</ul>
+<h3 id="示例-6"><a href="#示例-6" class="headerlink" title="示例"></a>示例</h3><ul>
+<li>给定 nums = [2, 7, 11, 15], target = 9<br>因为 nums[0] + nums[1] = 2 + 7 = 9<br>所以返回 [0, 1]</li>
+</ul>
+<h3 id="Python代码-4"><a href="#Python代码-4" class="headerlink" title="Python代码"></a>Python代码</h3><ul>
+<li>思路：建立一个字典，键为nums[i],值为下标i,遍历数组时，检查差值是否在字典中，若在，返回两个数的下标即可</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">twoSum</span><span class="params">(self, nums, target)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type nums: List[int]</span></span><br><span class="line"><span class="string">        :type target: int</span></span><br><span class="line"><span class="string">        :rtype: List[int]</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        dic = &#123;&#125;</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(nums)):</span><br><span class="line">            complement = target - nums[i]</span><br><span class="line">            <span class="keyword">if</span> complement <span class="keyword">in</span> dic:</span><br><span class="line">                <span class="keyword">return</span> [dic[complement], i]</span><br><span class="line">            dic[nums[i]] = i</span><br></pre></td></tr></table></figure>
+<h1 id="205-同构字符串"><a href="#205-同构字符串" class="headerlink" title="205. 同构字符串"></a>205. 同构字符串</h1><h3 id="要求-7"><a href="#要求-7" class="headerlink" title="要求"></a>要求</h3><ul>
+<li>给定两个字符串 s 和 t，判断它们是否是同构的。<br>如果 s 中的字符可以被替换得到 t ，那么这两个字符串是同构的。<br>所有出现的字符都必须用另一个字符替换，同时保留字符的顺序。两个字符不能映射到同一个字符上，但字符可以映射自己本身。</li>
+</ul>
+<h3 id="示例-7"><a href="#示例-7" class="headerlink" title="示例"></a>示例</h3><ul>
+<li><p>输入: s = “egg”, t = “add”<br>输出: true</p>
+</li>
+<li><p>输入: s = “foo”, t = “bar”<br>输出: false</p>
+</li>
+</ul>
+<h3 id="Python代码-5"><a href="#Python代码-5" class="headerlink" title="Python代码"></a>Python代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isIsomorphic</span><span class="params">(self, s, t)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type s: str</span></span><br><span class="line"><span class="string">        :type t: str</span></span><br><span class="line"><span class="string">        :rtype: bool</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="keyword">return</span> self.iso(s,t) <span class="keyword">and</span> self.iso(t,s)</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">iso</span><span class="params">(self,s, t)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type s: str</span></span><br><span class="line"><span class="string">        :type t: str</span></span><br><span class="line"><span class="string">        :rtype: bool</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        mapx = &#123;&#125;</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(s)):</span><br><span class="line">            <span class="keyword">if</span> s[i] <span class="keyword">not</span> <span class="keyword">in</span> mapx:</span><br><span class="line">                mapx[s[i]] = t[i]</span><br><span class="line">            <span class="keyword">elif</span> s[i] <span class="keyword">in</span> mapx:</span><br><span class="line">                <span class="keyword">if</span> t[i] != mapx[s[i]]:</span><br><span class="line">                    <span class="keyword">return</span> <span class="keyword">False</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">True</span></span><br></pre></td></tr></table></figure>
+<h1 id="599-两个列表的最小索引总和"><a href="#599-两个列表的最小索引总和" class="headerlink" title="599. 两个列表的最小索引总和"></a>599. 两个列表的最小索引总和</h1><h3 id="难度-容易-7"><a href="#难度-容易-7" class="headerlink" title="难度:容易"></a>难度:容易</h3><h3 id="要求-8"><a href="#要求-8" class="headerlink" title="要求"></a>要求</h3><ul>
+<li>假设Andy和Doris想在晚餐时选择一家餐厅，并且他们都有一个表示最喜爱餐厅的列表，每个餐厅的名字用字符串表示。<br>你需要帮助他们用最少的索引和找出他们共同喜爱的餐厅。 如果答案不止一个，则输出所有答案并且不考虑顺序。 你可以假设总是存在一个答案。</li>
+</ul>
+<h3 id="示例-8"><a href="#示例-8" class="headerlink" title="示例"></a>示例</h3><ul>
+<li>输入：<br>[“Shogun”, “Tapioca Express”, “Burger King”, “KFC”]<br>[“KFC”, “Shogun”, “Burger King”]<br>输出: [“Shogun”]<br>解释: 他们共同喜爱且具有最小索引和的餐厅是“Shogun”，它有最小的索引和1(0+1)。</li>
+</ul>
+<h3 id="python代码-1"><a href="#python代码-1" class="headerlink" title="python代码"></a>python代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">findRestaurant</span><span class="params">(self, list1, list2)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type list1: List[str]</span></span><br><span class="line"><span class="string">        :type list2: List[str]</span></span><br><span class="line"><span class="string">        :rtype: List[str]</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        dic = &#123;&#125;</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(list1)):</span><br><span class="line">            <span class="keyword">if</span> list1[i] <span class="keyword">in</span> list2:</span><br><span class="line">                sum_index = i + list2.index(list1[i])</span><br><span class="line">                <span class="keyword">if</span> sum_index <span class="keyword">not</span> <span class="keyword">in</span> dic:</span><br><span class="line">                    dic[sum_index] = []</span><br><span class="line">                dic[sum_index].append(list1[i])</span><br><span class="line">        min_key = min(dic.keys())</span><br><span class="line">        <span class="keyword">return</span> dic[min_key]</span><br></pre></td></tr></table></figure>
+<h1 id="387-字符串中的第一个唯一字符"><a href="#387-字符串中的第一个唯一字符" class="headerlink" title="387. 字符串中的第一个唯一字符"></a>387. 字符串中的第一个唯一字符</h1><h3 id="难度-容易-8"><a href="#难度-容易-8" class="headerlink" title="难度:容易"></a>难度:容易</h3><h3 id="要求-9"><a href="#要求-9" class="headerlink" title="要求"></a>要求</h3><ul>
+<li>给定一个字符串，找到它的第一个不重复的字符，并返回它的索引。如果不存在，则返回 -1。</li>
+</ul>
+<h3 id="示例-9"><a href="#示例-9" class="headerlink" title="示例"></a>示例</h3><ul>
+<li><p>s = “leetcode”<br>返回 0.</p>
+</li>
+<li><p>s = “loveleetcode”,<br>返回 2.</p>
+</li>
+</ul>
+<h3 id="python代码-2"><a href="#python代码-2" class="headerlink" title="python代码"></a>python代码</h3><ul>
+<li>维护一个hash表，键为字符，值为出现个数，返回第一个值为1的键的下标</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">firstUniqChar</span><span class="params">(self, s)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type s: str</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        str_hash = &#123;&#125;</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(s)):</span><br><span class="line">            <span class="keyword">if</span> s[i] <span class="keyword">not</span> <span class="keyword">in</span> str_hash:</span><br><span class="line">                str_hash[s[i]] = <span class="number">0</span></span><br><span class="line">            str_hash[s[i]] += <span class="number">1</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> str_hash.keys():</span><br><span class="line">            <span class="keyword">if</span> str_hash[i] == <span class="number">1</span>:</span><br><span class="line">                <span class="keyword">return</span> s.index(i)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span></span><br></pre></td></tr></table></figure>
+<h1 id="350-两个数组的交集-II"><a href="#350-两个数组的交集-II" class="headerlink" title="350. 两个数组的交集 II"></a>350. 两个数组的交集 II</h1><h3 id="难度-容易-9"><a href="#难度-容易-9" class="headerlink" title="难度:容易"></a>难度:容易</h3><h3 id="要求-10"><a href="#要求-10" class="headerlink" title="要求"></a>要求</h3><ul>
+<li>给定两个数组，编写一个函数来计算它们的交集。</li>
+</ul>
+<h3 id="示例-10"><a href="#示例-10" class="headerlink" title="示例"></a>示例</h3><ul>
+<li><p>输入: nums1 = [1,2,2,1], nums2 = [2,2]<br>输出: [2,2]</p>
+</li>
+<li><p>输入: nums1 = [4,9,5], nums2 = [9,4,9,8,4]<br>输出: [4,9]</p>
+</li>
+</ul>
+<h3 id="Python代码-6"><a href="#Python代码-6" class="headerlink" title="Python代码"></a>Python代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">intersect</span><span class="params">(self, nums1, nums2)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type nums1: List[int]</span></span><br><span class="line"><span class="string">        :type nums2: List[int]</span></span><br><span class="line"><span class="string">        :rtype: List[int]</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        dic = &#123;&#125;</span><br><span class="line">        ans = []</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> nums1:</span><br><span class="line">            <span class="keyword">if</span> i <span class="keyword">not</span> <span class="keyword">in</span> dic:</span><br><span class="line">                dic[i] = <span class="number">0</span></span><br><span class="line">            dic[i] += <span class="number">1</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> nums2:</span><br><span class="line">            <span class="keyword">if</span> i <span class="keyword">in</span> dic <span class="keyword">and</span> dic[i] != <span class="number">0</span>:</span><br><span class="line">                ans.append(i)</span><br><span class="line">                dic[i] -= <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>
+<h1 id="219-存在重复元素-II"><a href="#219-存在重复元素-II" class="headerlink" title="219. 存在重复元素 II"></a>219. 存在重复元素 II</h1><h3 id="难度-容易-10"><a href="#难度-容易-10" class="headerlink" title="难度:容易"></a>难度:容易</h3><h3 id="要求-11"><a href="#要求-11" class="headerlink" title="要求"></a>要求</h3><ul>
+<li>给定一个整数数组和一个整数 k，判断数组中是否存在两个不同的索引 i 和 j，使得 nums [i] = nums [j]，并且 i 和 j 的差的绝对值最大为 k。</li>
+</ul>
+<h3 id="示例-11"><a href="#示例-11" class="headerlink" title="示例"></a>示例</h3><ul>
+<li><p>输入: nums = [1,2,3,1], k = 3<br>输出: true</p>
+</li>
+<li><p>输入: nums = [1,0,1,1], k = 1<br>输出: true</p>
+</li>
+<li><p>输入: nums = [1,2,3,1,2,3], k = 2<br>输出: false</p>
+</li>
+</ul>
+<h3 id="Python代码-7"><a href="#Python代码-7" class="headerlink" title="Python代码"></a>Python代码</h3><ul>
+<li>题目意思描述的不是很清楚，其实想表达的意思是在k个距离之内，nums中是否存在重复，可以用一个字典，键为nums中的数值，值为数值对应的下标，如果出现重复则计算下标差值是否在k之内，若在，则返回True，否则更新该数值所对应的字典中的值</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">containsNearbyDuplicate</span><span class="params">(self, nums, k)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type nums: List[int]</span></span><br><span class="line"><span class="string">        :type k: int</span></span><br><span class="line"><span class="string">        :rtype: bool</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        distance = &#123;&#125;</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(nums)):</span><br><span class="line">            <span class="keyword">if</span> nums[i] <span class="keyword">not</span> <span class="keyword">in</span> distance:</span><br><span class="line">                distance[nums[i]] = i</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">if</span> i - distance[nums[i]] &lt;= k:</span><br><span class="line">                    <span class="keyword">return</span> <span class="keyword">True</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    distance[nums[i]] = i</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">False</span></span><br></pre></td></tr></table></figure>
+<h1 id="49-字母异位词分组"><a href="#49-字母异位词分组" class="headerlink" title="49. 字母异位词分组"></a>49. 字母异位词分组</h1><h3 id="难度-中等"><a href="#难度-中等" class="headerlink" title="难度:中等"></a>难度:中等</h3><h3 id="要求-12"><a href="#要求-12" class="headerlink" title="要求"></a>要求</h3><p>给定一个字符串数组，将字母异位词组合在一起。字母异位词指字母相同，但排列不同的字符串。</p>
+<h3 id="示例-12"><a href="#示例-12" class="headerlink" title="示例"></a>示例</h3><p>输入: [“eat”, “tea”, “tan”, “ate”, “nat”, “bat”],<br>输出:<br>[<br>  [“ate”,”eat”,”tea”],<br>  [“nat”,”tan”],<br>  [“bat”]<br>]</p>
+<h3 id="python代码-3"><a href="#python代码-3" class="headerlink" title="python代码"></a>python代码</h3><ul>
+<li>思路：建立一个键值对，其中键的设计很重要，键可以设计成每一个字符串排序后的结果，这样每读取一个字符串，先进行一次重排，如果重排后的新串在字典中，则将原本的字符串插入到该键对应的值中，如果不在字典中，则建立一个新的键值对</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">rebuild</span><span class="params">(self, str)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        重排字符串</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        ans = []</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> str:</span><br><span class="line">            ans.append(i)</span><br><span class="line">        ans.sort()</span><br><span class="line">        <span class="keyword">return</span> <span class="string">''</span>.join(ans)</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">groupAnagrams</span><span class="params">(self, strs)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type strs: List[str]</span></span><br><span class="line"><span class="string">        :rtype: List[List[str]]</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        dic = &#123;&#125;</span><br><span class="line">        <span class="keyword">for</span> str <span class="keyword">in</span> strs:</span><br><span class="line">            <span class="keyword">if</span> str <span class="keyword">in</span> dic:</span><br><span class="line">                dic[str].append(str)</span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">            str_ = self.rebuild(str)</span><br><span class="line">            <span class="keyword">if</span> str_ <span class="keyword">not</span> <span class="keyword">in</span> dic:</span><br><span class="line">                dic[str_] = []</span><br><span class="line">            dic[str_].append(str)</span><br><span class="line">        <span class="keyword">return</span> list(dic.values())</span><br></pre></td></tr></table></figure>
+<h1 id="36-有效的数独"><a href="#36-有效的数独" class="headerlink" title="36. 有效的数独"></a>36. 有效的数独</h1><h3 id="难度-中等-1"><a href="#难度-中等-1" class="headerlink" title="难度:中等"></a>难度:中等</h3><h3 id="要求-13"><a href="#要求-13" class="headerlink" title="要求"></a>要求</h3><ul>
+<li>判断一个 9x9 的数独是否有效。只需要根据以下规则，验证已经填入的数字是否有效即可。<br>数字 1-9 在每一行只能出现一次。<br>数字 1-9 在每一列只能出现一次。<br>数字 1-9 在每一个以粗实线分隔的 3x3 宫内只能出现一次。</li>
+</ul>
+<h3 id="示例-13"><a href="#示例-13" class="headerlink" title="示例"></a>示例</h3><ul>
+<li><p>输入:<br>[<br>[“5”,”3”,”.”,”.”,”7”,”.”,”.”,”.”,”.”],<br>[“6”,”.”,”.”,”1”,”9”,”5”,”.”,”.”,”.”],<br>[“.”,”9”,”8”,”.”,”.”,”.”,”.”,”6”,”.”],<br>[“8”,”.”,”.”,”.”,”6”,”.”,”.”,”.”,”3”],<br>[“4”,”.”,”.”,”8”,”.”,”3”,”.”,”.”,”1”],<br>[“7”,”.”,”.”,”.”,”2”,”.”,”.”,”.”,”6”],<br>[“.”,”6”,”.”,”.”,”.”,”.”,”2”,”8”,”.”],<br>[“.”,”.”,”.”,”4”,”1”,”9”,”.”,”.”,”5”],<br>[“.”,”.”,”.”,”.”,”8”,”.”,”.”,”7”,”9”]<br>]<br>输出: true</p>
+</li>
+<li><p>输入:<br>[<br>[“8”,”3”,”.”,”.”,”7”,”.”,”.”,”.”,”.”],<br>[“6”,”.”,”.”,”1”,”9”,”5”,”.”,”.”,”.”],<br>[“.”,”9”,”8”,”.”,”.”,”.”,”.”,”6”,”.”],<br>[“8”,”.”,”.”,”.”,”6”,”.”,”.”,”.”,”3”],<br>[“4”,”.”,”.”,”8”,”.”,”3”,”.”,”.”,”1”],<br>[“7”,”.”,”.”,”.”,”2”,”.”,”.”,”.”,”6”],<br>[“.”,”6”,”.”,”.”,”.”,”.”,”2”,”8”,”.”],<br>[“.”,”.”,”.”,”4”,”1”,”9”,”.”,”.”,”5”],<br>[“.”,”.”,”.”,”.”,”8”,”.”,”.”,”7”,”9”]<br>]<br>输出: false<br>解释: 除了第一行的第一个数字从 5 改为 8 以外，空格内其他数字均与 示例1 相同。但由于位于左上角的 3x3 宫内有两个 8 存在, 因此这个数独是无效的。</p>
+</li>
+</ul>
+<h3 id="python代码-4"><a href="#python代码-4" class="headerlink" title="python代码"></a>python代码</h3><ul>
+<li>思路：建立三个函数，分别是判断题目中的三个要求</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isValidRow</span><span class="params">(self, board)</span>:</span>   </span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">9</span>):</span><br><span class="line">            list_ = []</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">9</span>):</span><br><span class="line">                <span class="keyword">if</span> board[i][j] != <span class="string">'.'</span> <span class="keyword">and</span> board[i][j] <span class="keyword">in</span> list_:</span><br><span class="line">                    <span class="keyword">return</span> <span class="keyword">False</span></span><br><span class="line">                list_.append(board[i][j])</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">True</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isValidColumn</span><span class="params">(self, board)</span>:</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">9</span>):</span><br><span class="line">            list_ = []</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">9</span>):</span><br><span class="line">                <span class="keyword">if</span> board[i][j] != <span class="string">'.'</span> <span class="keyword">and</span> board[i][j] <span class="keyword">in</span> list_:</span><br><span class="line">                    <span class="keyword">return</span> <span class="keyword">False</span></span><br><span class="line">                list_.append(board[i][j])</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">True</span></span><br><span class="line">                </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isValidSquare</span><span class="params">(self, board)</span>:</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, <span class="number">9</span>, <span class="number">3</span>):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">0</span>, <span class="number">9</span>, <span class="number">3</span>):</span><br><span class="line">                list_ = []</span><br><span class="line">                <span class="keyword">for</span> k <span class="keyword">in</span> range(i, i+<span class="number">3</span>):</span><br><span class="line">                    <span class="keyword">for</span> l <span class="keyword">in</span> range(j, j+<span class="number">3</span>):</span><br><span class="line">                        <span class="keyword">if</span> board[k][l] != <span class="string">'.'</span> <span class="keyword">and</span> board[k][l] <span class="keyword">in</span> list_:</span><br><span class="line">                            <span class="keyword">return</span> <span class="keyword">False</span></span><br><span class="line">                        list_.append(board[k][l])</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">True</span></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isValidSudoku</span><span class="params">(self, board)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type board: List[List[str]]</span></span><br><span class="line"><span class="string">        :rtype: bool</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="keyword">return</span> self.isValidRow(board) <span class="keyword">and</span> self.isValidColumn(board) <span class="keyword">and</span> self.isValidSquare(board)</span><br></pre></td></tr></table></figure>
+<h1 id="652-寻找重复的子树"><a href="#652-寻找重复的子树" class="headerlink" title="652. 寻找重复的子树"></a>652. 寻找重复的子树</h1><h3 id="难度-中等-2"><a href="#难度-中等-2" class="headerlink" title="难度:中等"></a>难度:中等</h3><h3 id="要求-14"><a href="#要求-14" class="headerlink" title="要求"></a>要求</h3><ul>
+<li>给定一棵二叉树，返回所有重复的子树。对于同一类的重复子树，你只需要返回其中任意一棵的根结点即可。<br>两棵树重复是指它们具有相同的结构以及相同的结点值。</li>
+</ul>
+<h3 id="Python-代码-1"><a href="#Python-代码-1" class="headerlink" title="Python 代码"></a>Python 代码</h3><ul>
+<li>思路：对每一个子树采用先序遍历的方法，将遍历的结果保存为字符串作为键，值设为出现的次数，若值为1，则将子串的root添加到ans中，最后返回ans</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">helper</span><span class="params">(self, root, dic, ans)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> root <span class="keyword">is</span> <span class="keyword">None</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">'#'</span></span><br><span class="line">        dic_key = str(root.val)+<span class="string">','</span>+self.helper(root.left, dic, ans)+<span class="string">','</span>+self.helper(root.right, dic, ans)</span><br><span class="line">        <span class="keyword">if</span> dic_key <span class="keyword">not</span> <span class="keyword">in</span> dic:</span><br><span class="line">            dic[dic_key] = <span class="number">0</span></span><br><span class="line">        <span class="keyword">elif</span> dic[dic_key] == <span class="number">1</span>:</span><br><span class="line">            ans.append(root)</span><br><span class="line">        dic[dic_key] += <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> dic_key</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">findDuplicateSubtrees</span><span class="params">(self, root)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type root: TreeNode</span></span><br><span class="line"><span class="string">        :rtype: List[TreeNode]</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        dic = &#123;&#125;</span><br><span class="line">        ans = []</span><br><span class="line">        self.helper(root, dic, ans)</span><br><span class="line">        <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>
+<h1 id="771-宝石与石头"><a href="#771-宝石与石头" class="headerlink" title="771.宝石与石头"></a>771.宝石与石头</h1><h3 id="难度-容易-11"><a href="#难度-容易-11" class="headerlink" title="难度:容易"></a>难度:容易</h3><h3 id="要求-15"><a href="#要求-15" class="headerlink" title="要求"></a>要求</h3><ul>
+<li>给定字符串J 代表石头中宝石的类型，和字符串 S代表你拥有的石头。 S 中每个字符代表了一种你拥有的石头的类型，你想知道你拥有的石头中有多少是宝石。<br>J 中的字母不重复，J 和 S中的所有字符都是字母。字母区分大小写，因此”a”和”A”是不同类型的石头。</li>
+</ul>
+<h3 id="示例-14"><a href="#示例-14" class="headerlink" title="示例"></a>示例</h3><ul>
+<li><p>输入: J = “aA”, S = “aAAbbbb”<br>输出: 3</p>
+</li>
+<li><p>输入: J = “z”, S = “ZZ”<br>输出: 0</p>
+</li>
+</ul>
+<h3 id="Python代码-8"><a href="#Python代码-8" class="headerlink" title="Python代码"></a>Python代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">numJewelsInStones</span><span class="params">(self, J, S)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type J: str</span></span><br><span class="line"><span class="string">        :type S: str</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        dic = &#123;&#125;</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> J:</span><br><span class="line">            dic[i] = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> S:</span><br><span class="line">            <span class="keyword">if</span> j <span class="keyword">in</span> dic:</span><br><span class="line">                dic[j] += <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> sum(dic.values())</span><br></pre></td></tr></table></figure>
+<h1 id="3-无重复字符的最长子串"><a href="#3-无重复字符的最长子串" class="headerlink" title="3.无重复字符的最长子串"></a>3.无重复字符的最长子串</h1><h3 id="难度-中等-3"><a href="#难度-中等-3" class="headerlink" title="难度:中等"></a>难度:中等</h3><h3 id="要求-16"><a href="#要求-16" class="headerlink" title="要求"></a>要求</h3><ul>
+<li>给定一个字符串，请你找出其中不含有重复字符的 最长子串 的长度。</li>
+</ul>
+<h3 id="示例-15"><a href="#示例-15" class="headerlink" title="示例"></a>示例</h3><ul>
+<li><p>示例 1:<br>输入: “abcabcbb”<br>输出: 3<br>解释: 因为无重复字符的最长子串是 “abc”，所以其长度为 3。</p>
+</li>
+<li><p>示例 2:<br>输入: “bbbbb”<br>输出: 1<br>解释: 因为无重复字符的最长子串是 “b”，所以其长度为 1。</p>
+</li>
+<li><p>示例 3:<br>输入: “pwwkew”<br>输出: 3<br>解释: 因为无重复字符的最长子串是 “wke”，所以其长度为 3。</p>
+</li>
+</ul>
+<h3 id="python代码-5"><a href="#python代码-5" class="headerlink" title="python代码"></a>python代码</h3><ul>
+<li>思路：维护一个列表，依次读取s中的字符，如果该字符不在列表中，则加入，并更新最大长度，若在列表中，则删除掉列表中前面到该字符的全部元素，并将该字符插入到最后</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">lengthOfLongestSubstring</span><span class="params">(self, s)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type s: str</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        max_length = <span class="number">0</span></span><br><span class="line">        list_str = []</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> s:</span><br><span class="line">            <span class="keyword">if</span> i <span class="keyword">not</span> <span class="keyword">in</span> list_str:</span><br><span class="line">                list_str.append(i)</span><br><span class="line">                max_length = max_length <span class="keyword">if</span> max_length &gt; len(list_str) <span class="keyword">else</span> len(list_str)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">del</span> list_str[:list_str.index(i)+<span class="number">1</span>]</span><br><span class="line">                list_str.append(i)</span><br><span class="line">        <span class="keyword">return</span> max_length</span><br></pre></td></tr></table></figure>
+<h1 id="454-四数相加-II"><a href="#454-四数相加-II" class="headerlink" title="454. 四数相加 II"></a>454. 四数相加 II</h1><h3 id="难度-中等-4"><a href="#难度-中等-4" class="headerlink" title="难度:中等"></a>难度:中等</h3><h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><ul>
+<li>给定四个包含整数的数组列表 A , B , C , D ,计算有多少个元组 (i, j, k, l) ，使得 A[i] + B[j] + C[k] + D[l] = 0。<br>为了使问题简单化，所有的 A, B, C, D 具有相同的长度 N，且 0 ≤ N ≤ 500 。所有整数的范围在 -228 到 228 - 1 之间，最终结果不会超过 231 - 1 。</li>
+</ul>
+<h3 id="示例-16"><a href="#示例-16" class="headerlink" title="示例"></a>示例</h3><ul>
+<li>输入:<br>A = [ 1, 2]<br>B = [-2,-1]<br>C = [-1, 2]<br>D = [ 0, 2]<br>输出:<br>2<br>解释:<br>两个元组如下:</li>
+</ul>
+<ol>
+<li>(0, 0, 0, 1) -&gt; A[0] + B[0] + C[0] + D[1] = 1 + (-2) + (-1) + 2 = 0</li>
+<li>(1, 1, 0, 0) -&gt; A[1] + B[1] + C[0] + D[0] = 2 + (-1) + (-1) + 0 = 0</li>
+</ol>
+<h3 id="Python-代码-2"><a href="#Python-代码-2" class="headerlink" title="Python 代码"></a>Python 代码</h3><ul>
+<li>思路：维护一个字典，键为AB各取一个元素的和，值为这个和出现的次数，在CD中各取一个元素求和，去相反数，如果相反数在字典中，则ans加上这个相反数对应的值</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">fourSumCount</span><span class="params">(self, A, B, C, D)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type A: List[int]</span></span><br><span class="line"><span class="string">        :type B: List[int]</span></span><br><span class="line"><span class="string">        :type C: List[int]</span></span><br><span class="line"><span class="string">        :type D: List[int]</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        length = len(A)</span><br><span class="line">        dic_AB = &#123;&#125;</span><br><span class="line">        ans = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(length):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(length):</span><br><span class="line">                sum_AB = A[i] + B[j]</span><br><span class="line">                <span class="keyword">if</span> sum_AB <span class="keyword">not</span> <span class="keyword">in</span> dic_AB:</span><br><span class="line">                    dic_AB[sum_AB] = <span class="number">0</span></span><br><span class="line">                dic_AB[sum_AB] += <span class="number">1</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(length):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(length):</span><br><span class="line">                sum_CD = C[i] + D[j]</span><br><span class="line">                <span class="keyword">if</span> -sum_CD <span class="keyword">in</span> dic_AB:</span><br><span class="line">                    ans += dic_AB[-sum_CD]</span><br><span class="line">                    </span><br><span class="line">        <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>
+<h1 id="347-前K个高频元素"><a href="#347-前K个高频元素" class="headerlink" title="347. 前K个高频元素"></a>347. 前K个高频元素</h1><h3 id="难度-中等-5"><a href="#难度-中等-5" class="headerlink" title="难度:中等"></a>难度:中等</h3><h3 id="要求-17"><a href="#要求-17" class="headerlink" title="要求"></a>要求</h3><ul>
+<li>给定一个非空的整数数组，返回其中出现频率前 k 高的元素</li>
+</ul>
+<h3 id="示例-17"><a href="#示例-17" class="headerlink" title="示例"></a>示例</h3><ul>
+<li><p>示例 1:<br>输入: nums = [1,1,1,2,2,3], k = 2<br>输出: [1,2]</p>
+</li>
+<li><p>示例 2:<br>输入: nums = [1], k = 1<br>输出: [1]</p>
+</li>
+<li><p>你可以假设给定的 k 总是合理的，且 1 ≤ k ≤ 数组中不相同的元素的个数。</p>
+</li>
+</ul>
+<h3 id="Python代码-9"><a href="#Python代码-9" class="headerlink" title="Python代码"></a>Python代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">topKFrequent</span><span class="params">(self, nums, k)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type nums: List[int]</span></span><br><span class="line"><span class="string">        :type k: int</span></span><br><span class="line"><span class="string">        :rtype: List[int]</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        dic = &#123;&#125;      </span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> nums:</span><br><span class="line">            <span class="keyword">if</span> i <span class="keyword">not</span> <span class="keyword">in</span> dic:</span><br><span class="line">                dic[i] = <span class="number">0</span></span><br><span class="line">            dic[i] += <span class="number">1</span></span><br><span class="line">        a = sorted(dic.items(), key=<span class="keyword">lambda</span> item:item[<span class="number">1</span>],reverse=<span class="keyword">True</span>) </span><br><span class="line">        <span class="comment"># 按值排序，reverse默认为False，为升序，True为降序，返回的是一个列表，列表元素为有序的键值元组</span></span><br><span class="line">        ans = []</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(k):</span><br><span class="line">            ans.append(a[i][<span class="number">0</span>])</span><br><span class="line">        <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>
+<h1 id="380-常数时间插入、删除和获取随机元素"><a href="#380-常数时间插入、删除和获取随机元素" class="headerlink" title="380. 常数时间插入、删除和获取随机元素"></a>380. 常数时间插入、删除和获取随机元素</h1><h3 id="难度-中等-6"><a href="#难度-中等-6" class="headerlink" title="难度:中等"></a>难度:中等</h3><h3 id="要求-18"><a href="#要求-18" class="headerlink" title="要求"></a>要求</h3><ul>
+<li>设计一个支持在平均 时间复杂度 O(1) 下，执行以下操作的数据结构。<br>insert(val)：当元素 val 不存在时，向集合中插入该项。<br>remove(val)：元素 val 存在时，从集合中移除该项。<br>getRandom：随机返回现有集合中的一项。每个元素应该有相同的概率被返回。</li>
+</ul>
+<h3 id="示例-18"><a href="#示例-18" class="headerlink" title="示例"></a>示例</h3><ul>
+<li>// 初始化一个空的集合。<br>RandomizedSet randomSet = new RandomizedSet();<br>// 向集合中插入 1 。返回 true 表示 1 被成功地插入。<br>randomSet.insert(1);<br>// 返回 false ，表示集合中不存在 2 。<br>randomSet.remove(2);<br>// 向集合中插入 2 。返回 true 。集合现在包含 [1,2] 。<br>randomSet.insert(2);<br>// getRandom 应随机返回 1 或 2 。<br>randomSet.getRandom();<br>// 从集合中移除 1 ，返回 true 。集合现在包含 [2] 。<br>randomSet.remove(1);<br>// 2 已在集合中，所以返回 false 。<br>randomSet.insert(2);<br>// 由于 2 是集合中唯一的数字，getRandom 总是返回 2 。<br>randomSet.getRandom();</li>
+</ul>
+<h3 id="Python代码-10"><a href="#Python代码-10" class="headerlink" title="Python代码"></a>Python代码</h3><ul>
+<li>思路：既然是要求在常数时间内的操作，很自然想到要用到数组的序号来操作，这里维护一个字典和一个列表，字典的键为元素，字典值为该元素在列表中的序号</li>
+<li>在插入时，字典和列表均插入元素，字典中的值设为列表中元素的序号</li>
+<li>在删除时，先在字典中获取待删除元素的序号，在列表中将末尾元素替换至该序号处，在字典中修改替换过来的元素的值，最后pop掉列表最后一个元素，同时删除掉字典中的val</li>
+<li>在随机获取时，使用random随机获取一个序号，然后返回列表中对应序号的元素</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">RandomizedSet</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        Initialize your data structure here.</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        </span><br><span class="line">        self.dic = &#123;&#125;</span><br><span class="line">        self.lst = []</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">insert</span><span class="params">(self, val)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        Inserts a value to the set. Returns true if the set did not already contain the specified element.</span></span><br><span class="line"><span class="string">        :type val: int</span></span><br><span class="line"><span class="string">        :rtype: bool</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> val <span class="keyword">not</span> <span class="keyword">in</span> self.dic:</span><br><span class="line">            self.lst.append(val)</span><br><span class="line">            self.dic[val] = len(self.lst) - <span class="number">1</span></span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">True</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">False</span></span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">remove</span><span class="params">(self, val)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        Removes a value from the set. Returns true if the set contained the specified element.</span></span><br><span class="line"><span class="string">        :type val: int</span></span><br><span class="line"><span class="string">        :rtype: bool</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> val <span class="keyword">in</span> self.dic:</span><br><span class="line">            idx = self.dic[val]</span><br><span class="line">            self.lst[idx] = self.lst[<span class="number">-1</span>]  <span class="comment"># 与末尾元素交换</span></span><br><span class="line">            self.dic[self.lst[idx]] = idx <span class="comment"># 修改字典中交换元素的值</span></span><br><span class="line">            self.lst.pop()</span><br><span class="line">            <span class="keyword">del</span> self.dic[val]</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">True</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">False</span></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">getRandom</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        Get a random element from the set.</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        </span><br><span class="line">        idx = random.randint(<span class="number">0</span>, len(self.lst)<span class="number">-1</span>)</span><br><span class="line">        <span class="keyword">return</span> self.lst[idx]</span><br><span class="line">        </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Your RandomizedSet object will be instantiated and called as such:</span></span><br><span class="line"><span class="comment"># obj = RandomizedSet()</span></span><br><span class="line"><span class="comment"># param_1 = obj.insert(val)</span></span><br><span class="line"><span class="comment"># param_2 = obj.remove(val)</span></span><br><span class="line"><span class="comment"># param_3 = obj.getRandom()</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <div>
+      
+      <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">
+            -------------本文结束
+            <i class="fa fa-paw"></i>
+            感谢您的阅读-------------
+        </div>
+    
+</div>
+      
+    </div>
+    
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/LeetCode/" <i="" class="fa fa-tag"> LeetCode</a>
+          
+            <a href="/tags/刷题/" <i="" class="fa fa-tag"> 刷题</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/01/26/Python之numpy/" rel="next" title="Python的小伙伴们之numpy">
+                <i class="fa fa-chevron-left"></i> Python的小伙伴们之numpy
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/header.png" alt="Gao Yuan">
+            
+              <p class="site-author-name" itemprop="name">Gao Yuan</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/gysss" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:gaoy2018@mail.ustc.edu.cn" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                推荐阅读
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.liaoxuefeng.com/" title="廖雪峰" target="_blank">廖雪峰</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.jiqizhixin.com" title="机器之心" target="_blank">机器之心</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#705-设计哈希集合"><span class="nav-number">1.</span> <span class="nav-text">705. 设计哈希集合</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#难度-容易"><span class="nav-number">1.0.1.</span> <span class="nav-text">难度:容易</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#要求"><span class="nav-number">1.0.2.</span> <span class="nav-text">要求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#示例"><span class="nav-number">1.0.3.</span> <span class="nav-text">示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#python代码"><span class="nav-number">1.0.4.</span> <span class="nav-text">python代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#C-代码"><span class="nav-number">1.0.5.</span> <span class="nav-text">C++代码</span></a></li></ol></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#706-设计哈希映射"><span class="nav-number">2.</span> <span class="nav-text">706. 设计哈希映射</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#难度-容易-1"><span class="nav-number">2.0.1.</span> <span class="nav-text">难度:容易</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#要求-1"><span class="nav-number">2.0.2.</span> <span class="nav-text">要求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#示例-1"><span class="nav-number">2.0.3.</span> <span class="nav-text">示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Python代码"><span class="nav-number">2.0.4.</span> <span class="nav-text">Python代码</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#217-存在重复元素"><span class="nav-number">3.</span> <span class="nav-text">217. 存在重复元素</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#难度-容易-2"><span class="nav-number">3.0.1.</span> <span class="nav-text">难度:容易</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#要求-2"><span class="nav-number">3.0.2.</span> <span class="nav-text">要求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#示例-2"><span class="nav-number">3.0.3.</span> <span class="nav-text">示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Python代码-1"><span class="nav-number">3.0.4.</span> <span class="nav-text">Python代码</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#136-只出现一次的数字"><span class="nav-number">4.</span> <span class="nav-text">136. 只出现一次的数字</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#难度-容易-3"><span class="nav-number">4.0.1.</span> <span class="nav-text">难度:容易</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#要求-3"><span class="nav-number">4.0.2.</span> <span class="nav-text">要求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#示例-3"><span class="nav-number">4.0.3.</span> <span class="nav-text">示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Python代码-2"><span class="nav-number">4.0.4.</span> <span class="nav-text">Python代码</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#349-两个数组的交集"><span class="nav-number">5.</span> <span class="nav-text">349. 两个数组的交集</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#难度-容易-4"><span class="nav-number">5.0.1.</span> <span class="nav-text">难度:容易</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#要求-4"><span class="nav-number">5.0.2.</span> <span class="nav-text">要求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#示例-4"><span class="nav-number">5.0.3.</span> <span class="nav-text">示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Python-代码"><span class="nav-number">5.0.4.</span> <span class="nav-text">Python 代码</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#202-快乐数"><span class="nav-number">6.</span> <span class="nav-text">202. 快乐数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#难度-容易-5"><span class="nav-number">6.0.1.</span> <span class="nav-text">难度:容易</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#要求-5"><span class="nav-number">6.0.2.</span> <span class="nav-text">要求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#示例-5"><span class="nav-number">6.0.3.</span> <span class="nav-text">示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Python代码-3"><span class="nav-number">6.0.4.</span> <span class="nav-text">Python代码</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-两数之和"><span class="nav-number">7.</span> <span class="nav-text">1. 两数之和</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#难度-容易-6"><span class="nav-number">7.0.1.</span> <span class="nav-text">难度:容易</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#要求-6"><span class="nav-number">7.0.2.</span> <span class="nav-text">要求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#示例-6"><span class="nav-number">7.0.3.</span> <span class="nav-text">示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Python代码-4"><span class="nav-number">7.0.4.</span> <span class="nav-text">Python代码</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#205-同构字符串"><span class="nav-number">8.</span> <span class="nav-text">205. 同构字符串</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#要求-7"><span class="nav-number">8.0.1.</span> <span class="nav-text">要求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#示例-7"><span class="nav-number">8.0.2.</span> <span class="nav-text">示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Python代码-5"><span class="nav-number">8.0.3.</span> <span class="nav-text">Python代码</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#599-两个列表的最小索引总和"><span class="nav-number">9.</span> <span class="nav-text">599. 两个列表的最小索引总和</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#难度-容易-7"><span class="nav-number">9.0.1.</span> <span class="nav-text">难度:容易</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#要求-8"><span class="nav-number">9.0.2.</span> <span class="nav-text">要求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#示例-8"><span class="nav-number">9.0.3.</span> <span class="nav-text">示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#python代码-1"><span class="nav-number">9.0.4.</span> <span class="nav-text">python代码</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#387-字符串中的第一个唯一字符"><span class="nav-number">10.</span> <span class="nav-text">387. 字符串中的第一个唯一字符</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#难度-容易-8"><span class="nav-number">10.0.1.</span> <span class="nav-text">难度:容易</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#要求-9"><span class="nav-number">10.0.2.</span> <span class="nav-text">要求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#示例-9"><span class="nav-number">10.0.3.</span> <span class="nav-text">示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#python代码-2"><span class="nav-number">10.0.4.</span> <span class="nav-text">python代码</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#350-两个数组的交集-II"><span class="nav-number">11.</span> <span class="nav-text">350. 两个数组的交集 II</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#难度-容易-9"><span class="nav-number">11.0.1.</span> <span class="nav-text">难度:容易</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#要求-10"><span class="nav-number">11.0.2.</span> <span class="nav-text">要求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#示例-10"><span class="nav-number">11.0.3.</span> <span class="nav-text">示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Python代码-6"><span class="nav-number">11.0.4.</span> <span class="nav-text">Python代码</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#219-存在重复元素-II"><span class="nav-number">12.</span> <span class="nav-text">219. 存在重复元素 II</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#难度-容易-10"><span class="nav-number">12.0.1.</span> <span class="nav-text">难度:容易</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#要求-11"><span class="nav-number">12.0.2.</span> <span class="nav-text">要求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#示例-11"><span class="nav-number">12.0.3.</span> <span class="nav-text">示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Python代码-7"><span class="nav-number">12.0.4.</span> <span class="nav-text">Python代码</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#49-字母异位词分组"><span class="nav-number">13.</span> <span class="nav-text">49. 字母异位词分组</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#难度-中等"><span class="nav-number">13.0.1.</span> <span class="nav-text">难度:中等</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#要求-12"><span class="nav-number">13.0.2.</span> <span class="nav-text">要求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#示例-12"><span class="nav-number">13.0.3.</span> <span class="nav-text">示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#python代码-3"><span class="nav-number">13.0.4.</span> <span class="nav-text">python代码</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#36-有效的数独"><span class="nav-number">14.</span> <span class="nav-text">36. 有效的数独</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#难度-中等-1"><span class="nav-number">14.0.1.</span> <span class="nav-text">难度:中等</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#要求-13"><span class="nav-number">14.0.2.</span> <span class="nav-text">要求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#示例-13"><span class="nav-number">14.0.3.</span> <span class="nav-text">示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#python代码-4"><span class="nav-number">14.0.4.</span> <span class="nav-text">python代码</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#652-寻找重复的子树"><span class="nav-number">15.</span> <span class="nav-text">652. 寻找重复的子树</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#难度-中等-2"><span class="nav-number">15.0.1.</span> <span class="nav-text">难度:中等</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#要求-14"><span class="nav-number">15.0.2.</span> <span class="nav-text">要求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Python-代码-1"><span class="nav-number">15.0.3.</span> <span class="nav-text">Python 代码</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#771-宝石与石头"><span class="nav-number">16.</span> <span class="nav-text">771.宝石与石头</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#难度-容易-11"><span class="nav-number">16.0.1.</span> <span class="nav-text">难度:容易</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#要求-15"><span class="nav-number">16.0.2.</span> <span class="nav-text">要求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#示例-14"><span class="nav-number">16.0.3.</span> <span class="nav-text">示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Python代码-8"><span class="nav-number">16.0.4.</span> <span class="nav-text">Python代码</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-无重复字符的最长子串"><span class="nav-number">17.</span> <span class="nav-text">3.无重复字符的最长子串</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#难度-中等-3"><span class="nav-number">17.0.1.</span> <span class="nav-text">难度:中等</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#要求-16"><span class="nav-number">17.0.2.</span> <span class="nav-text">要求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#示例-15"><span class="nav-number">17.0.3.</span> <span class="nav-text">示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#python代码-5"><span class="nav-number">17.0.4.</span> <span class="nav-text">python代码</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#454-四数相加-II"><span class="nav-number">18.</span> <span class="nav-text">454. 四数相加 II</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#难度-中等-4"><span class="nav-number">18.0.1.</span> <span class="nav-text">难度:中等</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思路"><span class="nav-number">18.0.2.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#示例-16"><span class="nav-number">18.0.3.</span> <span class="nav-text">示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Python-代码-2"><span class="nav-number">18.0.4.</span> <span class="nav-text">Python 代码</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#347-前K个高频元素"><span class="nav-number">19.</span> <span class="nav-text">347. 前K个高频元素</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#难度-中等-5"><span class="nav-number">19.0.1.</span> <span class="nav-text">难度:中等</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#要求-17"><span class="nav-number">19.0.2.</span> <span class="nav-text">要求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#示例-17"><span class="nav-number">19.0.3.</span> <span class="nav-text">示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Python代码-9"><span class="nav-number">19.0.4.</span> <span class="nav-text">Python代码</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#380-常数时间插入、删除和获取随机元素"><span class="nav-number">20.</span> <span class="nav-text">380. 常数时间插入、删除和获取随机元素</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#难度-中等-6"><span class="nav-number">20.0.1.</span> <span class="nav-text">难度:中等</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#要求-18"><span class="nav-number">20.0.2.</span> <span class="nav-text">要求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#示例-18"><span class="nav-number">20.0.3.</span> <span class="nav-text">示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Python代码-10"><span class="nav-number">20.0.4.</span> <span class="nav-text">Python代码</span></a></li></ol></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Gao Yuan</span>
+
+  
+</div>
+
+<!-- 
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+-->
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共17.7k字</span>
+</div>
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'nEzqkO2DfS1e5ynUfTO1QfTh-gzGzoHsz',
+        appKey: 'nV9z4bmgQoo6fnpaGvhg9gMA',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("nEzqkO2DfS1e5ynUfTO1QfTh-gzGzoHsz", "nV9z4bmgQoo6fnpaGvhg9gMA");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>
