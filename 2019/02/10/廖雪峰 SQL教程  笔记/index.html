@@ -133,7 +133,7 @@
 <meta property="og:description" content="什么是SQL 简单地说，SQL就是访问和处理关系数据库的计算机标准语言具体来说，SQL是结构化查询语言Structured Query Language的缩写，用来访问和操作数据库系统。SQL语句既可以查询数据库中的数据，也可以添加、更新和删除数据库中的数据，还可以对数据库进行管理和维护操作。  数据库有哪三种模型 层次模型：就是以“上下级”的层次关系来组织数据的一种方式，层次模型的数据结构看起来">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://pm4hiq6u5.bkt.clouddn.com/20190208140956_YEVs7r_%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-02-08%20%E4%B8%8B%E5%8D%882.09.38.jpeg">
-<meta property="og:updated_time" content="2019-02-10T05:43:48.111Z">
+<meta property="og:updated_time" content="2019-02-27T08:27:30.864Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《廖雪峰：SQL教程》笔记">
 <meta name="twitter:description" content="什么是SQL 简单地说，SQL就是访问和处理关系数据库的计算机标准语言具体来说，SQL是结构化查询语言Structured Query Language的缩写，用来访问和操作数据库系统。SQL语句既可以查询数据库中的数据，也可以添加、更新和删除数据库中的数据，还可以对数据库进行管理和维护操作。  数据库有哪三种模型 层次模型：就是以“上下级”的层次关系来组织数据的一种方式，层次模型的数据结构看起来">
@@ -344,10 +344,6 @@
 
         <div class="post-meta">
           
-            <i class="fa fa-thumb-tack"></i>
-            <font color="7D26CD">置顶</font>
-            <span class="post-meta-divider">|</span>
-          
           <span class="post-time">
             
               <span class="post-meta-item-icon">
@@ -481,7 +477,7 @@
 <li>查询的结果默认是按主键排序的，而加上ORDER BY &lt;列名&gt;，表示根据该列按升序排列，使用ORDER BY &lt;列名&gt; DESC，表示按降序，对于相同的数据可以进一步排序：ORDER BY &lt;列名1&gt; DESC, &lt;列名2&gt;</li>
 <li>使用LIMIT <m> OFFSET <n>可以对结果集进行分页，每次查询返回结果集的一部分，LIMIT值是每页显示的个数，OFFSET值表示跳过前多少个；在MySQL中，LIMIT 15 OFFSET 30还可以简写成LIMIT 30, 15。</n></m></li>
 <li>聚合查询：<ul>
-<li>COUNT(<em>)：表示查询所有列的行数，如: SELECT COUNT(\</em>) num FROM students; 会返回students表的总行数，且命名为num</li>
+<li>COUNT()：表示查询所有列的行数，如: SELECT COUNT(*) num FROM students; 会返回students表的总行数，且命名为num</li>
 <li>SUM(id)    计算某一列的合计值，该列必须为数值类型</li>
 <li>AVG(id)    计算某一列的平均值，该列必须为数值类型</li>
 <li>MAX(id) 计算某一列的最大值，如果是字符类型，会返回排序最后的字符</li>
@@ -612,6 +608,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2019/02/27/Kaggle 之 Titanic/" rel="prev" title="Kaggle实战之Titanic">
+                Kaggle实战之Titanic <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -692,7 +692,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -705,7 +705,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -829,7 +829,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共25.6k字</span>
+  <span class="post-count">博客全站共27.2k字</span>
 </div>
         
 

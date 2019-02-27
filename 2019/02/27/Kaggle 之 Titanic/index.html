@@ -1,0 +1,1451 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-bounce.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="机器学习,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="题目来自：Titanic参考资料来自：An Interactive Data Science TutorialTitanic 生存预测比赛是一个二分类问题，根据乘客的信息来判断是否在沉船事故中存活了下来。首先还是导入必要的库： 1234567891011121314151617181920212223242526272829303132# Ignore warningsimport warning">
+<meta name="keywords" content="机器学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Kaggle实战之Titanic">
+<meta property="og:url" content="http://gysss.github.io/2019/02/27/Kaggle 之 Titanic/index.html">
+<meta property="og:site_name" content="Gy&#39;s Blog">
+<meta property="og:description" content="题目来自：Titanic参考资料来自：An Interactive Data Science TutorialTitanic 生存预测比赛是一个二分类问题，根据乘客的信息来判断是否在沉船事故中存活了下来。首先还是导入必要的库： 1234567891011121314151617181920212223242526272829303132# Ignore warningsimport warning">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://pm4hiq6u5.bkt.clouddn.com/20190227100041_Yi4c4F_%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-02-27%20%E4%B8%8A%E5%8D%8810.00.25.jpeg">
+<meta property="og:image" content="http://pm4hiq6u5.bkt.clouddn.com/20190227100530_DbhsjX_%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-02-27%20%E4%B8%8A%E5%8D%8810.05.18.jpeg">
+<meta property="og:image" content="http://pm4hiq6u5.bkt.clouddn.com/20190227101256_yfmUCq_%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-02-27%20%E4%B8%8A%E5%8D%8810.12.21.jpeg">
+<meta property="og:image" content="http://pm4hiq6u5.bkt.clouddn.com/20190227102751_5TIdQg_%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-02-27%20%E4%B8%8A%E5%8D%8810.27.38.jpeg">
+<meta property="og:image" content="http://pm4hiq6u5.bkt.clouddn.com/20190227103218_7nNTRz_%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-02-27%20%E4%B8%8A%E5%8D%8810.31.32.jpeg">
+<meta property="og:image" content="http://pm4hiq6u5.bkt.clouddn.com/20190227111111_0voZDi_%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-02-27%20%E4%B8%8A%E5%8D%8811.10.59.jpeg">
+<meta property="og:image" content="http://pm4hiq6u5.bkt.clouddn.com/20190227111616_EIBS4a_%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-02-27%20%E4%B8%8A%E5%8D%8811.16.01.jpeg">
+<meta property="og:image" content="http://pm4hiq6u5.bkt.clouddn.com/20190227111917_RNDstf_%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-02-27%20%E4%B8%8A%E5%8D%8811.19.01.jpeg">
+<meta property="og:image" content="http://pm4hiq6u5.bkt.clouddn.com/20190227112338_Jas3t2_%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-02-27%20%E4%B8%8A%E5%8D%8811.23.17.jpeg">
+<meta property="og:image" content="http://pm4hiq6u5.bkt.clouddn.com/20190227133647_8IKPI0_%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-02-27%20%E4%B8%8B%E5%8D%881.36.22.jpeg">
+<meta property="og:image" content="http://pm4hiq6u5.bkt.clouddn.com/20190227134911_OdUOhz_%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-02-27%20%E4%B8%8B%E5%8D%881.48.40.jpeg">
+<meta property="og:image" content="http://pm4hiq6u5.bkt.clouddn.com/20190227143625_XlTU9W_%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-02-27%20%E4%B8%8B%E5%8D%882.33.18.jpeg">
+<meta property="og:updated_time" content="2019-02-27T08:27:30.852Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Kaggle实战之Titanic">
+<meta name="twitter:description" content="题目来自：Titanic参考资料来自：An Interactive Data Science TutorialTitanic 生存预测比赛是一个二分类问题，根据乘客的信息来判断是否在沉船事故中存活了下来。首先还是导入必要的库： 1234567891011121314151617181920212223242526272829303132# Ignore warningsimport warning">
+<meta name="twitter:image" content="http://pm4hiq6u5.bkt.clouddn.com/20190227100041_Yi4c4F_%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-02-27%20%E4%B8%8A%E5%8D%8810.00.25.jpeg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://gysss.github.io/2019/02/27/Kaggle 之 Titanic/">
+
+
+
+
+
+  <title>Kaggle实战之Titanic | Gy's Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Gy's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://gysss.github.io/2019/02/27/Kaggle 之 Titanic/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Gao Yuan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Gy's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Kaggle实战之Titanic</h1>
+        
+
+        <div class="post-meta">
+          
+            <i class="fa fa-thumb-tack"></i>
+            <font color="7D26CD">置顶</font>
+            <span class="post-meta-divider">|</span>
+          
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-27T16:24:33+08:00">
+                2019-02-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/02/27/Kaggle 之 Titanic/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/02/27/Kaggle 之 Titanic/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2019/02/27/Kaggle 之 Titanic/" class="leancloud_visitors" data-flag-title="Kaggle实战之Titanic">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">热度&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+                <span>℃</span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.7k 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  8 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>题目来自：<a href="https://www.kaggle.com/c/titanic" target="_blank" rel="noopener">Titanic</a><br>参考资料来自：<a href="https://www.kaggle.com/helgejo/an-interactive-data-science-tutorial" target="_blank" rel="noopener">An Interactive Data Science Tutorial</a><br>Titanic 生存预测比赛是一个二分类问题，根据乘客的信息来判断是否在沉船事故中存活了下来。<br>首先还是导入必要的库：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Ignore warnings</span></span><br><span class="line"><span class="keyword">import</span> warnings</span><br><span class="line">warnings.filterwarnings(<span class="string">'ignore'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Handle table-like data and matrices</span></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="comment"># Modelling Algorithms</span></span><br><span class="line"><span class="keyword">from</span> sklearn.tree <span class="keyword">import</span> DecisionTreeClassifier</span><br><span class="line"><span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> LogisticRegression</span><br><span class="line"><span class="keyword">from</span> sklearn.neighbors <span class="keyword">import</span> KNeighborsClassifier</span><br><span class="line"><span class="keyword">from</span> sklearn.naive_bayes <span class="keyword">import</span> GaussianNB</span><br><span class="line"><span class="keyword">from</span> sklearn.svm <span class="keyword">import</span> SVC, LinearSVC</span><br><span class="line"><span class="keyword">from</span> sklearn.ensemble <span class="keyword">import</span> RandomForestClassifier , GradientBoostingClassifier</span><br><span class="line"></span><br><span class="line"><span class="comment"># Modelling Helpers</span></span><br><span class="line"><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> Imputer , Normalizer , scale</span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> train_test_split , StratifiedKFold</span><br><span class="line"><span class="keyword">from</span> sklearn.feature_selection <span class="keyword">import</span> RFECV</span><br><span class="line"></span><br><span class="line"><span class="comment"># Visualisation</span></span><br><span class="line"><span class="keyword">import</span> matplotlib <span class="keyword">as</span> mpl</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> matplotlib.pylab <span class="keyword">as</span> pylab</span><br><span class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns</span><br><span class="line"></span><br><span class="line"><span class="comment"># Configure visualisations</span></span><br><span class="line">%matplotlib inline</span><br><span class="line">mpl.style.use( <span class="string">'ggplot'</span> )</span><br><span class="line">sns.set_style( <span class="string">'white'</span> )</span><br><span class="line">pylab.rcParams[ <span class="string">'figure.figsize'</span> ] = <span class="number">8</span> , <span class="number">6</span></span><br></pre></td></tr></table></figure>
+<p>其次是一些用于绘图的功能性函数：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">plot_histograms</span><span class="params">( df , variables , n_rows , n_cols )</span>:</span></span><br><span class="line">    fig = plt.figure( figsize = ( <span class="number">16</span> , <span class="number">12</span> ) )</span><br><span class="line">    <span class="keyword">for</span> i, var_name <span class="keyword">in</span> enumerate( variables ):</span><br><span class="line">        ax=fig.add_subplot( n_rows , n_cols , i+<span class="number">1</span> )</span><br><span class="line">        df[ var_name ].hist( bins=<span class="number">10</span> , ax=ax )</span><br><span class="line">        ax.set_title( <span class="string">'Skew: '</span> + str( round( float( df[ var_name ].skew() ) , ) ) ) <span class="comment"># + ' ' + var_name ) #var_name+" Distribution")</span></span><br><span class="line">        ax.set_xticklabels( [] , visible=<span class="keyword">False</span> )</span><br><span class="line">        ax.set_yticklabels( [] , visible=<span class="keyword">False</span> )</span><br><span class="line">    fig.tight_layout()  <span class="comment"># Improves appearance a bit.</span></span><br><span class="line">    plt.show()</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">plot_distribution</span><span class="params">( df , var , target , **kwargs )</span>:</span></span><br><span class="line">    row = kwargs.get( <span class="string">'row'</span> , <span class="keyword">None</span> )</span><br><span class="line">    col = kwargs.get( <span class="string">'col'</span> , <span class="keyword">None</span> )</span><br><span class="line">    facet = sns.FacetGrid( df , hue=target , aspect=<span class="number">4</span> , row = row , col = col )</span><br><span class="line">    facet.map( sns.kdeplot , var , shade= <span class="keyword">True</span> )</span><br><span class="line">    facet.set( xlim=( <span class="number">0</span> , df[ var ].max() ) )</span><br><span class="line">    facet.add_legend()</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">plot_categories</span><span class="params">( df , cat , target , **kwargs )</span>:</span></span><br><span class="line">    row = kwargs.get( <span class="string">'row'</span> , <span class="keyword">None</span> )</span><br><span class="line">    col = kwargs.get( <span class="string">'col'</span> , <span class="keyword">None</span> )</span><br><span class="line">    facet = sns.FacetGrid( df , row = row , col = col )</span><br><span class="line">    facet.map( sns.barplot , cat , target )</span><br><span class="line">    facet.add_legend()</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">plot_correlation_map</span><span class="params">( df )</span>:</span></span><br><span class="line">    corr = titanic.corr()</span><br><span class="line">    _ , ax = plt.subplots( figsize =( <span class="number">12</span> , <span class="number">10</span> ) )</span><br><span class="line">    cmap = sns.diverging_palette( <span class="number">220</span> , <span class="number">10</span> , as_cmap = <span class="keyword">True</span> )</span><br><span class="line">    _ = sns.heatmap(</span><br><span class="line">        corr, </span><br><span class="line">        cmap = cmap,</span><br><span class="line">        square=<span class="keyword">True</span>, </span><br><span class="line">        cbar_kws=&#123; <span class="string">'shrink'</span> : <span class="number">.9</span> &#125;, </span><br><span class="line">        ax=ax, </span><br><span class="line">        annot = <span class="keyword">True</span>, </span><br><span class="line">        annot_kws = &#123; <span class="string">'fontsize'</span> : <span class="number">12</span> &#125;</span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">describe_more</span><span class="params">( df )</span>:</span></span><br><span class="line">    var = [] ; l = [] ; t = []</span><br><span class="line">    <span class="keyword">for</span> x <span class="keyword">in</span> df:</span><br><span class="line">        var.append( x )</span><br><span class="line">        l.append( len( pd.value_counts( df[ x ] ) ) )</span><br><span class="line">        t.append( df[ x ].dtypes )</span><br><span class="line">    levels = pd.DataFrame( &#123; <span class="string">'Variable'</span> : var , <span class="string">'Levels'</span> : l , <span class="string">'Datatype'</span> : t &#125; )</span><br><span class="line">    levels.sort_values( by = <span class="string">'Levels'</span> , inplace = <span class="keyword">True</span> )</span><br><span class="line">    <span class="keyword">return</span> levels</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">plot_variable_importance</span><span class="params">( X , y )</span>:</span></span><br><span class="line">    tree = DecisionTreeClassifier( random_state = <span class="number">99</span> )</span><br><span class="line">    tree.fit( X , y )</span><br><span class="line">    plot_model_var_imp( tree , X , y )</span><br><span class="line">    </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">plot_model_var_imp</span><span class="params">( model , X , y )</span>:</span></span><br><span class="line">    imp = pd.DataFrame( </span><br><span class="line">        model.feature_importances_  , </span><br><span class="line">        columns = [ <span class="string">'Importance'</span> ] , </span><br><span class="line">        index = X.columns </span><br><span class="line">    )</span><br><span class="line">    imp = imp.sort_values( [ <span class="string">'Importance'</span> ] , ascending = <span class="keyword">True</span> )</span><br><span class="line">    imp[ : <span class="number">10</span> ].plot( kind = <span class="string">'barh'</span> )</span><br><span class="line">    <span class="keyword">print</span> (model.score( X , y ))</span><br></pre></td></tr></table></figure>
+<h3 id="训练集与测试集"><a href="#训练集与测试集" class="headerlink" title="训练集与测试集"></a>训练集与测试集</h3><p>接下来就是导入训练集和测试集了，以及对两个数据集进行了合并，以便于后面进行数据分析，特征工程等：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">train_data = pd.read_csv(<span class="string">'train.csv'</span>)</span><br><span class="line">test_data = pd.read_csv(<span class="string">'test.csv'</span>)</span><br><span class="line">full = train_data.append(test_data, ignore_index=<span class="keyword">True</span>)</span><br><span class="line">titanic = full[:<span class="number">891</span>]    <span class="comment"># full是整个数据集，titanic是训练集</span></span><br><span class="line">print(<span class="string">'full:'</span>, full.shape, <span class="string">';titanic:'</span>, titanic.shape)</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<blockquote>
+<p>full: (1309, 12) ;titanic: (891, 12)</p>
+</blockquote>
+<h3 id="数据分析"><a href="#数据分析" class="headerlink" title="数据分析"></a>数据分析</h3><p>使用full.head()可以查看前几个数据的样式，如下所示：<br><img src="http://pm4hiq6u5.bkt.clouddn.com/20190227100041_Yi4c4F_%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-02-27%20%E4%B8%8A%E5%8D%8810.00.25.jpeg" alt=""><br>使用titanic.info可以获取训练集每个column数据信息：<br><img src="http://pm4hiq6u5.bkt.clouddn.com/20190227100530_DbhsjX_%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-02-27%20%E4%B8%8A%E5%8D%8810.05.18.jpeg" alt=""><br>使用test_data.info可以获取测试集每个column数据信息：<br><img src="http://pm4hiq6u5.bkt.clouddn.com/20190227101256_yfmUCq_%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-02-27%20%E4%B8%8A%E5%8D%8810.12.21.jpeg" alt=""><br>关于各个column的信息如下：<br>Age：年龄，有中等数量的缺失<br>cabin：座舱号，有大量的缺失<br>Embarked：登船口，在训练集中有很少量的缺失(2个)，包括C，Q，S三种<br>Fare：乘客的票价，在测试集中有很少量的缺失(1个)<br>Name：姓名<br>Parch：乘客的父母和孩子的个数<br>PassengerId: 自增数值，无意义<br>Pclass：票的等级，有三级：1，2，3<br>Sex：性别，male和female<br>SibSp：乘客的兄弟和配偶的个数<br>Survived：是否存活，0 = No, 1 = Yes<br>ticket：票的编号</p>
+<p>绘制相关性的heat map，可能可以知道哪些变量是很重要的</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plot_correlation_map(titanic)</span><br></pre></td></tr></table></figure>
+<p>输出如下图：<br><img src="http://pm4hiq6u5.bkt.clouddn.com/20190227102751_5TIdQg_%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-02-27%20%E4%B8%8A%E5%8D%8810.27.38.jpeg" alt=""><br>接下来绘制一些特征与存活与否之间的关系<br>首先是Age，Sex与Survived关系图：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plot_distribution(titanic , var = <span class="string">'Age'</span> , target = <span class="string">'Survived'</span> , row = <span class="string">'Sex'</span>)</span><br></pre></td></tr></table></figure>
+<p>输出如下图：<br><img src="http://pm4hiq6u5.bkt.clouddn.com/20190227103218_7nNTRz_%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-02-27%20%E4%B8%8A%E5%8D%8810.31.32.jpeg" alt=""><br>两个线差别较大的地方，代表了更好的区分度。可以看到年龄小的男性更多的存活，中等年龄的男性更多的死亡</p>
+<p>Fare和Survived的关系图：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plot_distribution(titanic , var = <span class="string">'Fare'</span> , target = <span class="string">'Survived'</span> )</span><br></pre></td></tr></table></figure>
+<p>输出如下图：<br><img src="http://pm4hiq6u5.bkt.clouddn.com/20190227111111_0voZDi_%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-02-27%20%E4%B8%8A%E5%8D%8811.10.59.jpeg" alt=""><br>可以看到，低票价有着更高的死亡率</p>
+<p>接下来看Embarked与Survived的关系：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">print(titanic.Embarked.value_counts())</span><br><span class="line">plot_categories( titanic , cat = <span class="string">'Embarked'</span> , target = <span class="string">'Survived'</span> )</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<blockquote>
+<p>S    644<br>C    168<br>Q     77<br>Name: Embarked, dtype: int64<br><img src="http://pm4hiq6u5.bkt.clouddn.com/20190227111616_EIBS4a_%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-02-27%20%E4%B8%8A%E5%8D%8811.16.01.jpeg" alt=""><br>可以看到S的数目是最多的，但是存活率是最低的</p>
+</blockquote>
+<p>再看Sex与Survived的关系：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">print(titanic.Sex.value_counts())</span><br><span class="line">plot_categories( titanic , cat = <span class="string">'Sex'</span> , target = <span class="string">'Survived'</span> )</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<blockquote>
+<p>male      577<br>female    314<br>Name: Sex, dtype: int64<br><img src="http://pm4hiq6u5.bkt.clouddn.com/20190227111917_RNDstf_%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-02-27%20%E4%B8%8A%E5%8D%8811.19.01.jpeg" alt=""><br>可以看到女性人数少，但是有着绝对的更大的存活率。</p>
+</blockquote>
+<p>对于Pclass与Survived的关系</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">print(titanic.Pclass.value_counts())</span><br><span class="line">plot_categories( titanic , cat = <span class="string">'Pclass'</span> , target = <span class="string">'Survived'</span> )</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<blockquote>
+<p>3    491<br>1    216<br>2    184<br>Name: Pclass, dtype: int64<br><img src="http://pm4hiq6u5.bkt.clouddn.com/20190227112338_Jas3t2_%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-02-27%20%E4%B8%8A%E5%8D%8811.23.17.jpeg" alt=""><br>等级1人最少，却有着最多的存活率，等级3人最多，却是最少的存活率</p>
+</blockquote>
+<p>对于SibSp和Parch两个数据，可以进行求和，并分成0和不为0两类</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">titanic[<span class="string">'Family_All'</span>] = titanic[<span class="string">'SibSp'</span>] + titanic[<span class="string">'Parch'</span>]</span><br><span class="line">titanic[<span class="string">'Family_All'</span>] = [<span class="number">0</span> <span class="keyword">if</span> i == <span class="number">0</span> <span class="keyword">else</span> <span class="number">1</span> <span class="keyword">for</span> i <span class="keyword">in</span> titanic.Family_All]</span><br><span class="line">print(titanic.Family_All.value_counts())</span><br><span class="line">plot_categories( titanic , cat = <span class="string">'Family_All'</span> , target = <span class="string">'Survived'</span> )</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<blockquote>
+<p>0    537<br>1    354<br>Name: Family_All, dtype: int64<br><img src="http://pm4hiq6u5.bkt.clouddn.com/20190227133647_8IKPI0_%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-02-27%20%E4%B8%8B%E5%8D%881.36.22.jpeg" alt=""><br>可以看到为0的，存活率相较于不为0的，是要低很多的</p>
+</blockquote>
+<h3 id="大致的通过图表分析过后，对原始数据进行些处理。"><a href="#大致的通过图表分析过后，对原始数据进行些处理。" class="headerlink" title="大致的通过图表分析过后，对原始数据进行些处理。"></a>大致的通过图表分析过后，对原始数据进行些处理。</h3><p>首先是将sex的male和female转为1和0</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">my_sex = pd.DataFrame()</span><br><span class="line">my_sex[<span class="string">'Sex'</span>] = [<span class="number">1</span> <span class="keyword">if</span> i == <span class="string">'male'</span> <span class="keyword">else</span> <span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> full.Sex]</span><br></pre></td></tr></table></figure>
+<p>Embarked数据存在极少量的缺失，这里打算用最多的‘S’来填补，再使用pd.get_dummies来将多个变量转为one_hot编码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">my_embarked = pd.DataFrame()</span><br><span class="line">my_embarked[<span class="string">'Embarked'</span>] = full.Embarked.fillna(<span class="string">'S'</span>)</span><br><span class="line">my_embarked = pd.get_dummies(my_embarked.Embarked, prefix = <span class="string">'Embarked'</span>)</span><br><span class="line">my_embarked.head()</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<blockquote>
+<p><img src="http://pm4hiq6u5.bkt.clouddn.com/20190227134911_OdUOhz_%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-02-27%20%E4%B8%8B%E5%8D%881.48.40.jpeg" alt=""></p>
+</blockquote>
+<p>对于Pclass，没有缺失值，只需要转为one_hot即可</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">my_pclass = pd.DataFrame()</span><br><span class="line">my_pclass = pd.get_dummies(full.Pclass, prefix=<span class="string">'Pclass'</span>)</span><br></pre></td></tr></table></figure>
+<p>对于Fare，由于在测试集中有一个缺失值，所以可以采用平均数的方法来填补该缺失值，并且可以对Fare进行区间划分,并转为one_hot</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">my_fare = pd.DataFrame()</span><br><span class="line">my_fare[<span class="string">'Fare'</span>] = full.Fare.fillna(full.Fare.mean())</span><br><span class="line">my_fare[<span class="string">'Fare'</span>] = pd.qcut(my_fare[<span class="string">'Fare'</span>], <span class="number">4</span>)</span><br><span class="line">my_fare = pd.get_dummies(my_fare.Fare, prefix=<span class="string">'Fare'</span>)</span><br><span class="line">my_fare.head()</span><br></pre></td></tr></table></figure>
+<p>对于Age，缺失值较多，可以根据已有数据的平均值和标准差随机生成填充数，并进行区间划分，转为one_hot</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">my_age = pd.DataFrame()</span><br><span class="line">my_age[<span class="string">'Age'</span>] = full.Age</span><br><span class="line">age_avg = full.Age.mean()</span><br><span class="line">age_std = full.Age.std()</span><br><span class="line">age_null_count = full.Age.isnull().sum()</span><br><span class="line">age_null_random_list = np.random.randint(age_avg - age_std, age_avg + age_std, size = age_null_count)</span><br><span class="line">my_age[<span class="string">'Age'</span>][np.isnan(my_age[<span class="string">'Age'</span>])] = age_null_random_list</span><br><span class="line">my_age[<span class="string">'Age'</span>] = pd.qcut(my_age[<span class="string">'Age'</span>], <span class="number">4</span>)</span><br><span class="line">my_age = pd.get_dummies(my_age.Age, prefix=<span class="string">'Age'</span>)</span><br><span class="line">my_age.head()</span><br></pre></td></tr></table></figure>
+<p>根据Name中的内容可以生成title，并转为one_hot</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">title = pd.DataFrame()</span><br><span class="line">title[<span class="string">'Title'</span>] = full[<span class="string">'Name'</span>].map( <span class="keyword">lambda</span> name: name.split( <span class="string">','</span> )[<span class="number">1</span>].split( <span class="string">'.'</span> )[<span class="number">0</span>].strip() )</span><br><span class="line">Title_Dictionary = &#123;</span><br><span class="line">                    <span class="string">"Capt"</span>:       <span class="string">"Officer"</span>,</span><br><span class="line">                    <span class="string">"Col"</span>:        <span class="string">"Officer"</span>,</span><br><span class="line">                    <span class="string">"Major"</span>:      <span class="string">"Officer"</span>,</span><br><span class="line">                    <span class="string">"Jonkheer"</span>:   <span class="string">"Royalty"</span>,</span><br><span class="line">                    <span class="string">"Don"</span>:        <span class="string">"Royalty"</span>,</span><br><span class="line">                    <span class="string">"Sir"</span> :       <span class="string">"Royalty"</span>,</span><br><span class="line">                    <span class="string">"Dr"</span>:         <span class="string">"Officer"</span>,</span><br><span class="line">                    <span class="string">"Rev"</span>:        <span class="string">"Officer"</span>,</span><br><span class="line">                    <span class="string">"the Countess"</span>:<span class="string">"Royalty"</span>,</span><br><span class="line">                    <span class="string">"Dona"</span>:       <span class="string">"Royalty"</span>,</span><br><span class="line">                    <span class="string">"Mme"</span>:        <span class="string">"Mrs"</span>,</span><br><span class="line">                    <span class="string">"Mlle"</span>:       <span class="string">"Miss"</span>,</span><br><span class="line">                    <span class="string">"Ms"</span>:         <span class="string">"Mrs"</span>,</span><br><span class="line">                    <span class="string">"Mr"</span> :        <span class="string">"Mr"</span>,</span><br><span class="line">                    <span class="string">"Mrs"</span> :       <span class="string">"Mrs"</span>,</span><br><span class="line">                    <span class="string">"Miss"</span> :      <span class="string">"Miss"</span>,</span><br><span class="line">                    <span class="string">"Master"</span> :    <span class="string">"Master"</span>,</span><br><span class="line">                    <span class="string">"Lady"</span> :      <span class="string">"Royalty"</span></span><br><span class="line">                    &#125;</span><br><span class="line">title[<span class="string">'Title'</span>] = title.Title.map(Title_Dictionary)</span><br><span class="line">title = pd.get_dummies(title.Title)</span><br><span class="line">title.head()</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<blockquote>
+<p><img src="http://pm4hiq6u5.bkt.clouddn.com/20190227143625_XlTU9W_%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-02-27%20%E4%B8%8B%E5%8D%882.33.18.jpeg" alt=""></p>
+</blockquote>
+<p>对于Parch和SibSp，合并为Family_All</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">my_family = pd.DataFrame()</span><br><span class="line">my_family[<span class="string">'Family_All'</span>] = full[<span class="string">'Parch'</span>] + full[<span class="string">'SibSp'</span>]</span><br><span class="line">my_family[<span class="string">'Family_All'</span>] = [<span class="number">0</span> <span class="keyword">if</span> i == <span class="number">0</span> <span class="keyword">else</span> <span class="number">1</span> <span class="keyword">for</span> i <span class="keyword">in</span> my_family.Family_All]</span><br></pre></td></tr></table></figure>
+<p>Cabin的缺失值过多，先暂时舍弃<br>ticket也先舍弃</p>
+<h3 id="开始训练"><a href="#开始训练" class="headerlink" title="开始训练"></a>开始训练</h3><p>将刚才处理过的数据进行一个综合，并生成训练集和测试集</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">full_X = pd.concat( [my_family, title, my_age, my_embarked, my_fare, my_pclass, my_sex] , axis=<span class="number">1</span> )</span><br><span class="line">train_X = full_X[<span class="number">0</span>:<span class="number">891</span>]</span><br><span class="line">train_y = titanic.Survived</span><br><span class="line">test_X = full_X[<span class="number">891</span>:]</span><br></pre></td></tr></table></figure>
+<p>选择模型，并进行5折交叉验证</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> cross_val_score</span><br><span class="line">model = GradientBoostingClassifier(learning_rate=<span class="number">0.01</span>, max_depth=<span class="number">3</span>, n_estimators=<span class="number">150</span>)</span><br><span class="line"><span class="comment"># model = SVC()</span></span><br><span class="line"><span class="comment"># model = RandomForestClassifier(n_estimators=100)</span></span><br><span class="line"><span class="comment"># model = DecisionTreeClassifier()</span></span><br><span class="line">cross_val_score(model, train_X, train_y, cv=<span class="number">5</span>).mean()</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<blockquote>
+<p>0.8215596071618176</p>
+</blockquote>
+<p>最后进行训练与预测</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">model.fit( train_X , train_y )</span><br><span class="line">test_Y = model.predict( test_X )</span><br><span class="line">passenger_id = full[<span class="number">891</span>:].PassengerId</span><br><span class="line">test = pd.DataFrame( &#123; <span class="string">'PassengerId'</span>: passenger_id , <span class="string">'Survived'</span>: test_Y &#125; )</span><br><span class="line">test.to_csv( <span class="string">'titanic_pred.csv'</span> , index = <span class="keyword">False</span> )</span><br></pre></td></tr></table></figure>
+<p>最后上传到kaggle的成绩是0.78947，排在Top32%</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <div>
+      
+      <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">
+            -------------本文结束
+            <i class="fa fa-paw"></i>
+            感谢您的阅读-------------
+        </div>
+    
+</div>
+      
+    </div>
+    
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/机器学习/" <i="" class="fa fa-tag"> 机器学习</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/02/10/廖雪峰 SQL教程  笔记/" rel="next" title="《廖雪峰：SQL教程》笔记">
+                <i class="fa fa-chevron-left"></i> 《廖雪峰：SQL教程》笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/header.png" alt="Gao Yuan">
+            
+              <p class="site-author-name" itemprop="name">Gao Yuan</p>
+              <p class="site-description motion-element" itemprop="description">善始善终</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/gysss" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:gaoy2018@mail.ustc.edu.cn" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                推荐阅读
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.liaoxuefeng.com/" title="廖雪峰" target="_blank">廖雪峰</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.jiqizhixin.com" title="机器之心" target="_blank">机器之心</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://git-scm.com/book/zh" title="Git文档" target="_blank">Git文档</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#训练集与测试集"><span class="nav-number">1.</span> <span class="nav-text">训练集与测试集</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据分析"><span class="nav-number">2.</span> <span class="nav-text">数据分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#大致的通过图表分析过后，对原始数据进行些处理。"><span class="nav-number">3.</span> <span class="nav-text">大致的通过图表分析过后，对原始数据进行些处理。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开始训练"><span class="nav-number">4.</span> <span class="nav-text">开始训练</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Gao Yuan</span>
+
+  
+</div>
+
+<!-- 
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+-->
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共27.2k字</span>
+</div>
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'nEzqkO2DfS1e5ynUfTO1QfTh-gzGzoHsz',
+        appKey: 'nV9z4bmgQoo6fnpaGvhg9gMA',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("nEzqkO2DfS1e5ynUfTO1QfTh-gzGzoHsz", "nV9z4bmgQoo6fnpaGvhg9gMA");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>
