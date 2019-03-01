@@ -1,0 +1,1461 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-bounce.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="数据分析,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="具体内容来源及文件下载请到：Data Cleaning Challenge Day1:Handling missing valuesTake a first look at the data导入库和读取csv文件不再赘述！首先，检查是否有缺失值 12# 查看5行数据nfl_data.sample(5) See how many missing data points we have检查各个colu">
+<meta name="keywords" content="数据分析">
+<meta property="og:type" content="article">
+<meta property="og:title" content="五天数据清理挑战">
+<meta property="og:url" content="http://gysss.github.io/2019/03/01/五天数据清理挑战/index.html">
+<meta property="og:site_name" content="Gy&#39;s Blog">
+<meta property="og:description" content="具体内容来源及文件下载请到：Data Cleaning Challenge Day1:Handling missing valuesTake a first look at the data导入库和读取csv文件不再赘述！首先，检查是否有缺失值 12# 查看5行数据nfl_data.sample(5) See how many missing data points we have检查各个colu">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tKfTcgy1g0mcu62m7pj30oa0h8aat.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tKfTcgy1g0md70qci5j30ng0gyq3r.jpg">
+<meta property="og:updated_time" content="2019-03-01T07:14:09.037Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="五天数据清理挑战">
+<meta name="twitter:description" content="具体内容来源及文件下载请到：Data Cleaning Challenge Day1:Handling missing valuesTake a first look at the data导入库和读取csv文件不再赘述！首先，检查是否有缺失值 12# 查看5行数据nfl_data.sample(5) See how many missing data points we have检查各个colu">
+<meta name="twitter:image" content="https://ws3.sinaimg.cn/large/006tKfTcgy1g0mcu62m7pj30oa0h8aat.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://gysss.github.io/2019/03/01/五天数据清理挑战/">
+
+
+
+
+
+  <title>五天数据清理挑战 | Gy's Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Gy's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://gysss.github.io/2019/03/01/五天数据清理挑战/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Gao Yuan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Gy's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">五天数据清理挑战</h1>
+        
+
+        <div class="post-meta">
+          
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-01T15:12:51+08:00">
+                2019-03-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/03/01/五天数据清理挑战/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/03/01/五天数据清理挑战/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2019/03/01/五天数据清理挑战/" class="leancloud_visitors" data-flag-title="五天数据清理挑战">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">热度&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+                <span>℃</span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.8k 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  8 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>具体内容来源及文件下载请到：<a href="https://www.kaggle.com/rtatman/data-cleaning-challenge-handling-missing-values" target="_blank" rel="noopener">Data Cleaning Challenge</a></p>
+<h2 id="Day1-Handling-missing-values"><a href="#Day1-Handling-missing-values" class="headerlink" title="Day1:Handling missing values"></a>Day1:Handling missing values</h2><h3 id="Take-a-first-look-at-the-data"><a href="#Take-a-first-look-at-the-data" class="headerlink" title="Take a first look at the data"></a>Take a first look at the data</h3><p>导入库和读取csv文件不再赘述！<br>首先，检查是否有缺失值</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看5行数据</span></span><br><span class="line">nfl_data.sample(<span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="See-how-many-missing-data-points-we-have"><a href="#See-how-many-missing-data-points-we-have" class="headerlink" title="See how many missing data points we have"></a>See how many missing data points we have</h3><p>检查各个column有多少缺失值</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># get the number of missing data points per column</span></span><br><span class="line">missing_values_count = nfl_data.isnull().sum()</span><br><span class="line"></span><br><span class="line"><span class="comment"># look at the # of missing points in the first ten columns</span></span><br><span class="line">missing_values_count[<span class="number">0</span>:<span class="number">10</span>]</span><br></pre></td></tr></table></figure>
+<p>查看缺失值的百分比,这样或许更加直观</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># how many total missing values do we have?</span></span><br><span class="line">total_cells = np.product(nfl_data.shape)    <span class="comment"># np.product:Return the product of array elements over a given axis</span></span><br><span class="line">total_missing = missing_values_count.sum()</span><br><span class="line"></span><br><span class="line"><span class="comment"># percent of data that is missing</span></span><br><span class="line">(total_missing/total_cells) * <span class="number">100</span></span><br></pre></td></tr></table></figure>
+<h3 id="Figure-out-why-the-data-is-missing"><a href="#Figure-out-why-the-data-is-missing" class="headerlink" title="Figure out why the data is missing"></a>Figure out why the data is missing</h3><p>一个很重要的问题是：</p>
+<blockquote>
+<p>某个数据的缺失是因为它没有被记录还是压根就不存在</p>
+</blockquote>
+<p>如果是本来就不存在的话，那就没必要去猜它是啥了<br>如果是因为没有被记录的话，那么就需要基于这个数字所在的行和列的其他数据来猜它了</p>
+<blockquote>
+<p>Tips：反复阅读数据的文档说明是个很好的方法</p>
+</blockquote>
+<h3 id="Drop-missing-values"><a href="#Drop-missing-values" class="headerlink" title="Drop missing values"></a>Drop missing values</h3><p>如果说处理数据很匆忙，或者无法弄明白为啥缺失了，可以选择移除包含该数据的行或者列（但是，不推荐这样做）<br>移除带有缺失值的行：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># remove all the rows that contain a missing value</span></span><br><span class="line">nfl_data.dropna()</span><br></pre></td></tr></table></figure>
+<p>移除带有缺失值的列：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">columns_with_na_dropped = nfl_data.dropna(axis=<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="Filling-in-missing-values-automatically"><a href="#Filling-in-missing-values-automatically" class="headerlink" title="Filling in missing values automatically"></a>Filling in missing values automatically</h3><p>除了直接移除缺失值外，也可以尝试来填补<br>首先是直接用0来填补</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># get a small subset of the NFL dataset</span></span><br><span class="line">subset_nfl_data = nfl_data.loc[:, <span class="string">'EPA'</span>:<span class="string">'Season'</span>].head()</span><br><span class="line"></span><br><span class="line"><span class="comment"># replace all NA's with 0</span></span><br><span class="line">subset_nfl_data.fillna(<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+<p>也可以通过设置method = ‘bfill’，来用相邻行的同column数据来填补</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># replace all NA's the value that comes directly after it in the same column, </span></span><br><span class="line"><span class="comment"># then replace all the reamining na's with 0</span></span><br><span class="line">subset_nfl_data.fillna(method = <span class="string">'bfill'</span>, axis=<span class="number">0</span>).fillna(<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="Day2-Scaling-and-normalization"><a href="#Day2-Scaling-and-normalization" class="headerlink" title="Day2:Scaling and normalization"></a>Day2:Scaling and normalization</h2><h3 id="Scaling"><a href="#Scaling" class="headerlink" title="Scaling"></a>Scaling</h3><p>Scaling:缩放，修改数据的范围，常用于SVM和KNN</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># generate 1000 data points randomly drawn from an exponential distribution</span></span><br><span class="line">original_data = np.random.exponential(size = <span class="number">1000</span>)  <span class="comment"># 绘制指数分布</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># mix-max scale the data between 0 and 1</span></span><br><span class="line">scaled_data = minmax_scaling(original_data, columns = [<span class="number">0</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># plot both together to compare</span></span><br><span class="line">fig, ax=plt.subplots(<span class="number">1</span>,<span class="number">2</span>)</span><br><span class="line">sns.distplot(original_data, ax=ax[<span class="number">0</span>])</span><br><span class="line">ax[<span class="number">0</span>].set_title(<span class="string">"Original Data"</span>)</span><br><span class="line">sns.distplot(scaled_data, ax=ax[<span class="number">1</span>])</span><br><span class="line">ax[<span class="number">1</span>].set_title(<span class="string">"Scaled data"</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1g0mcu62m7pj30oa0h8aat.jpg" alt=""><br>可以看到数据的形状并没有变化，但范围是从0~8变为了0~1</p>
+<h3 id="Normalization"><a href="#Normalization" class="headerlink" title="Normalization"></a>Normalization</h3><p>Normalization：标准化，使数据尽可能满足正态分布，常用于t-tests, ANOVAs, linear regression, linear discriminant analysis (LDA) and Gaussian naive Bayes<br>这里使用的是Box-Cox转化</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># normalize the exponential data with boxcox</span></span><br><span class="line">normalized_data = stats.boxcox(original_data)</span><br><span class="line"></span><br><span class="line"><span class="comment"># plot both together to compare</span></span><br><span class="line">fig, ax=plt.subplots(<span class="number">1</span>,<span class="number">2</span>)</span><br><span class="line">sns.distplot(original_data, ax=ax[<span class="number">0</span>])</span><br><span class="line">ax[<span class="number">0</span>].set_title(<span class="string">"Original Data"</span>)</span><br><span class="line">sns.distplot(normalized_data[<span class="number">0</span>], ax=ax[<span class="number">1</span>])</span><br><span class="line">ax[<span class="number">1</span>].set_title(<span class="string">"Normalized data"</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1g0md70qci5j30ng0gyq3r.jpg" alt=""><br>可以看到转化后更加接近于正态分布了</p>
+<h2 id="Day-3-Parsing-dates"><a href="#Day-3-Parsing-dates" class="headerlink" title="Day 3: Parsing dates"></a>Day 3: Parsing dates</h2><h3 id="Check-the-data-type-of-our-date-column"><a href="#Check-the-data-type-of-our-date-column" class="headerlink" title="Check the data type of our date column"></a>Check the data type of our date column</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(landslides[<span class="string">'date'</span>].head())</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<blockquote>
+<p>0     3/2/07<br>1    3/22/07<br>2     4/6/07<br>3    4/14/07<br>4    4/15/07<br>Name: date, dtype: object</p>
+</blockquote>
+<p>作为人，可以清楚地知道这些数代表的是日期，但是Python不知道，左下角的dtpe：object，Pandas使用object表示数据包含多种数据种类，但通常都包含字符串。<br>其实Pandas是有一种datetime64的数据类型的</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># check the data type of our date column</span></span><br><span class="line">landslides[<span class="string">'date'</span>].dtype</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<blockquote>
+<p>dtype(‘O’)</p>
+</blockquote>
+<p>同样也可以用这种方法查看数据类型，‘O’表示object</p>
+<h3 id="Convert-our-date-columns-to-datetime"><a href="#Convert-our-date-columns-to-datetime" class="headerlink" title="Convert our date columns to datetime"></a>Convert our date columns to datetime</h3><p>将字符串转化为 datetime 时，要注明原字符串在表示日期时所遵循的格式，%d for day, %m for month, %y for a two-digit year and %Y for a four digit year.<br>具体的：</p>
+<ul>
+<li>1/17/07 has the format “%m/%d/%y”</li>
+<li>17-1-2007 has the format “%d-%m-%Y”</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">landslides.date = pd.to_datetime(landslides.date, format=<span class="string">"%m/%d/%y"</span>)</span><br><span class="line">landslides.date.head()</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<blockquote>
+<p>0   2007-03-02<br>1   2007-03-22<br>2   2007-04-06<br>3   2007-04-14<br>4   2007-04-15<br>Name: date, dtype: datetime64[ns]</p>
+</blockquote>
+<p>如果日期的格式不是固定的”%m/%d/%y”，而是多种格式的混合时，可以让pandas来推断正确的格式，这样：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">landslides[<span class="string">'date_parsed'</span>] = pd.to_datetime(landslides[<span class="string">'Date'</span>], infer_datetime_format=<span class="keyword">True</span>)</span><br></pre></td></tr></table></figure>
+<p>但是不要总是使用这个方法，因为pandas不能总是判断正确格式，而且会很慢</p>
+<h3 id="Select-just-the-day-of-the-month-from-our-column"><a href="#Select-just-the-day-of-the-month-from-our-column" class="headerlink" title="Select just the day of the month from our column"></a>Select just the day of the month from our column</h3><p>对于datatime的数据，可以选取出其中的day，month，year</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">day_date = landslides.date.dt.day</span><br><span class="line">month_date = landslides.date.dt.month</span><br><span class="line">year_date = landslides.date.dt.year</span><br></pre></td></tr></table></figure>
+<h3 id="Plot-the-day-of-the-month-to-check-the-date-parsing"><a href="#Plot-the-day-of-the-month-to-check-the-date-parsing" class="headerlink" title="Plot the day of the month to check the date parsing"></a>Plot the day of the month to check the date parsing</h3><p>可视化日期</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># remove na's</span></span><br><span class="line">day_date = day_date.dropna()</span><br><span class="line"></span><br><span class="line"><span class="comment"># plot the day of the month</span></span><br><span class="line">sns.distplot(day_date, kde=<span class="keyword">False</span>, bins=<span class="number">31</span>)  <span class="comment"># kde 用于调节是否显示核密度估计 bins 用于控制直方图的划分</span></span><br></pre></td></tr></table></figure>
+<p>补充一个<a href="https://www.kaggle.com/residentmario/time-series-plotting-optional" target="_blank" rel="noopener">时间序列可视化教程</a></p>
+<h2 id="Day-4-Character-encodings"><a href="#Day-4-Character-encodings" class="headerlink" title="Day 4: Character encodings"></a>Day 4: Character encodings</h2><h3 id="What-are-encodings"><a href="#What-are-encodings" class="headerlink" title="What are encodings?"></a>What are encodings?</h3><p>在Python3处理文本时，可能会遭遇的两种数据类型，一种是string，文本的默认属性</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># start with a string</span></span><br><span class="line">before = <span class="string">"This is the euro symbol: €"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># check to see what datatype it is</span></span><br><span class="line">type(before)</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<blockquote>
+<p>str</p>
+</blockquote>
+<p>另一种是bytes，是一个整数序列，可以从string转成bytes</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># encode it to a different encoding, replacing characters that raise errors</span></span><br><span class="line">after = before.encode(<span class="string">"utf-8"</span>, errors = <span class="string">"replace"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># check the type</span></span><br><span class="line">type(after)</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<blockquote>
+<p>bytes</p>
+</blockquote>
+<p>当然也可以从bytes转回成string</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">after.decode(<span class="string">'utf-8'</span>)</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<blockquote>
+<p>‘This is the euro symbol: €’</p>
+</blockquote>
+<h3 id="Reading-in-files-with-encoding-problems"><a href="#Reading-in-files-with-encoding-problems" class="headerlink" title="Reading in files with encoding problems"></a>Reading in files with encoding problems</h3><p>读取非UTF-8编码的文件会出错，可以采用的方法是先读取前10000bytes来判断下</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># look at the first ten thousand bytes to guess the character encoding</span></span><br><span class="line"><span class="keyword">with</span> open(<span class="string">"../input/kickstarter-projects/ks-projects-201801.csv"</span>, <span class="string">'rb'</span>) <span class="keyword">as</span> rawdata:</span><br><span class="line">    result = chardet.detect(rawdata.read(<span class="number">10000</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># check what the character encoding might be</span></span><br><span class="line">print(result)</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<blockquote>
+<p>{‘encoding’: ‘Windows-1252’, ‘confidence’: 0.73, ‘language’: ‘’}</p>
+</blockquote>
+<p>即chardet有73%概率认为是Windows-1252编码的，然后可以按此编码方式来打开文件</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># read in the file with the encoding detected by chardet</span></span><br><span class="line">kickstarter_2016 = pd.read_csv(<span class="string">"../input/kickstarter-projects/ks-projects-201612.csv"</span>, encoding=<span class="string">'Windows-1252'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># look at the first few lines</span></span><br><span class="line">kickstarter_2016.head()</span><br></pre></td></tr></table></figure>
+<h3 id="Saving-your-files-with-UTF-8-encoding"><a href="#Saving-your-files-with-UTF-8-encoding" class="headerlink" title="Saving your files with UTF-8 encoding"></a>Saving your files with UTF-8 encoding</h3><p>默认都是按utf-8来保存的</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># save our file (will be saved as UTF-8 by default!)</span></span><br><span class="line">kickstarter_2016.to_csv(<span class="string">"ks-projects-201801-utf8.csv"</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="Day-5-Inconsistent-Data-Entry"><a href="#Day-5-Inconsistent-Data-Entry" class="headerlink" title="Day 5: Inconsistent Data Entry"></a>Day 5: Inconsistent Data Entry</h2><h3 id="Do-some-preliminary-text-pre-processing"><a href="#Do-some-preliminary-text-pre-processing" class="headerlink" title="Do some preliminary text pre-processing"></a>Do some preliminary text pre-processing</h3><p>首先是检查city这一栏，有没有输入错误</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># get all the unique values in the 'City' column</span></span><br><span class="line">cities = suicide_attacks[<span class="string">'City'</span>].unique()</span><br><span class="line"></span><br><span class="line"><span class="comment"># sort them alphabetically and then take a closer look</span></span><br><span class="line">cities.sort()</span><br><span class="line">cities</span><br></pre></td></tr></table></figure>
+<p>通过全部转小写，去头尾的空格，可以消除80%的输出错误</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># convert to lower case</span></span><br><span class="line">suicide_attacks[<span class="string">'City'</span>] = suicide_attacks[<span class="string">'City'</span>].str.lower()</span><br><span class="line"><span class="comment"># remove trailing white spaces</span></span><br><span class="line">suicide_attacks[<span class="string">'City'</span>] = suicide_attacks[<span class="string">'City'</span>].str.strip()</span><br></pre></td></tr></table></figure>
+<h3 id="Use-fuzzy-matching-to-correct-inconsistent-data-entry"><a href="#Use-fuzzy-matching-to-correct-inconsistent-data-entry" class="headerlink" title="Use fuzzy matching to correct inconsistent data entry"></a>Use fuzzy matching to correct inconsistent data entry</h3><p>使用fuzzywuzzy包， 可以用来分辨那些相似的字符串<br>Fuzzywuzzy返回的是两个字符串之间的几率值，越接近于100，相似度也就越高</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># get the top 10 closest matches to "d.i khan"</span></span><br><span class="line">matches = fuzzywuzzy.process.extract(<span class="string">"d.i khan"</span>, cities, limit=<span class="number">10</span>, scorer=fuzzywuzzy.fuzz.token_sort_ratio)</span><br><span class="line"></span><br><span class="line"><span class="comment"># take a look at them</span></span><br><span class="line">matches</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<blockquote>
+<p>[(‘d. i khan’, 100),<br> (‘d.i khan’, 100),<br> (‘d.g khan’, 88),<br> (‘khanewal’, 50),<br> (‘sudhanoti’, 47),<br> (‘hangu’, 46),<br> (‘kohat’, 46),<br> (‘dara adam khel’, 45),<br> (‘chaman’, 43),<br> (‘mardan’, 43)]</p>
+</blockquote>
+<p> 可以针对几率在90以上的进行替换，因此可以写出个转化的函数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># function to replace rows in the provided column of the provided dataframe</span></span><br><span class="line"><span class="comment"># that match the provided string above the provided ratio with the provided string</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">replace_matches_in_column</span><span class="params">(df, column, string_to_match, min_ratio = <span class="number">90</span>)</span>:</span></span><br><span class="line">    <span class="comment"># get a list of unique strings</span></span><br><span class="line">    strings = df[column].unique()</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># get the top 10 closest matches to our input string</span></span><br><span class="line">    matches = fuzzywuzzy.process.extract(string_to_match, strings, </span><br><span class="line">                                         limit=<span class="number">10</span>, scorer=fuzzywuzzy.fuzz.token_sort_ratio)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># only get matches with a ratio &gt; 90</span></span><br><span class="line">    close_matches = [matches[<span class="number">0</span>] <span class="keyword">for</span> matches <span class="keyword">in</span> matches <span class="keyword">if</span> matches[<span class="number">1</span>] &gt;= min_ratio]</span><br><span class="line"></span><br><span class="line">    <span class="comment"># get the rows of all the close matches in our dataframe</span></span><br><span class="line">    rows_with_matches = df[column].isin(close_matches)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># replace all rows with close matches with the input matches </span></span><br><span class="line">    df.loc[rows_with_matches, column] = string_to_match</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># let us know the function's done</span></span><br><span class="line">    print(<span class="string">"All done!"</span>)</span><br></pre></td></tr></table></figure>
+<p>然后便可以针对某一个字符串进行相似词的替换了</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># use the function we just wrote to replace close matches to "d.i khan" with "d.i khan"</span></span><br><span class="line">replace_matches_in_column(df=suicide_attacks, column=<span class="string">'City'</span>, string_to_match=<span class="string">"d.i khan"</span>)</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <div>
+      
+      <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">
+            -------------本文结束
+            <i class="fa fa-paw"></i>
+            感谢您的阅读-------------
+        </div>
+    
+</div>
+      
+    </div>
+    
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/数据分析/" <i="" class="fa fa-tag"> 数据分析</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/02/27/Kaggle 之 Titanic/" rel="next" title="Kaggle实战之Titanic">
+                <i class="fa fa-chevron-left"></i> Kaggle实战之Titanic
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/header.png" alt="Gao Yuan">
+            
+              <p class="site-author-name" itemprop="name">Gao Yuan</p>
+              <p class="site-description motion-element" itemprop="description">善始善终</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/gysss" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:gaoy2018@mail.ustc.edu.cn" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                推荐阅读
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.liaoxuefeng.com/" title="廖雪峰" target="_blank">廖雪峰</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.jiqizhixin.com" title="机器之心" target="_blank">机器之心</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://git-scm.com/book/zh" title="Git文档" target="_blank">Git文档</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Day1-Handling-missing-values"><span class="nav-number">1.</span> <span class="nav-text">Day1:Handling missing values</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Take-a-first-look-at-the-data"><span class="nav-number">1.1.</span> <span class="nav-text">Take a first look at the data</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#See-how-many-missing-data-points-we-have"><span class="nav-number">1.2.</span> <span class="nav-text">See how many missing data points we have</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Figure-out-why-the-data-is-missing"><span class="nav-number">1.3.</span> <span class="nav-text">Figure out why the data is missing</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Drop-missing-values"><span class="nav-number">1.4.</span> <span class="nav-text">Drop missing values</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Filling-in-missing-values-automatically"><span class="nav-number">1.5.</span> <span class="nav-text">Filling in missing values automatically</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Day2-Scaling-and-normalization"><span class="nav-number">2.</span> <span class="nav-text">Day2:Scaling and normalization</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Scaling"><span class="nav-number">2.1.</span> <span class="nav-text">Scaling</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Normalization"><span class="nav-number">2.2.</span> <span class="nav-text">Normalization</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Day-3-Parsing-dates"><span class="nav-number">3.</span> <span class="nav-text">Day 3: Parsing dates</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Check-the-data-type-of-our-date-column"><span class="nav-number">3.1.</span> <span class="nav-text">Check the data type of our date column</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Convert-our-date-columns-to-datetime"><span class="nav-number">3.2.</span> <span class="nav-text">Convert our date columns to datetime</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Select-just-the-day-of-the-month-from-our-column"><span class="nav-number">3.3.</span> <span class="nav-text">Select just the day of the month from our column</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Plot-the-day-of-the-month-to-check-the-date-parsing"><span class="nav-number">3.4.</span> <span class="nav-text">Plot the day of the month to check the date parsing</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Day-4-Character-encodings"><span class="nav-number">4.</span> <span class="nav-text">Day 4: Character encodings</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#What-are-encodings"><span class="nav-number">4.1.</span> <span class="nav-text">What are encodings?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Reading-in-files-with-encoding-problems"><span class="nav-number">4.2.</span> <span class="nav-text">Reading in files with encoding problems</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Saving-your-files-with-UTF-8-encoding"><span class="nav-number">4.3.</span> <span class="nav-text">Saving your files with UTF-8 encoding</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Day-5-Inconsistent-Data-Entry"><span class="nav-number">5.</span> <span class="nav-text">Day 5: Inconsistent Data Entry</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Do-some-preliminary-text-pre-processing"><span class="nav-number">5.1.</span> <span class="nav-text">Do some preliminary text pre-processing</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Use-fuzzy-matching-to-correct-inconsistent-data-entry"><span class="nav-number">5.2.</span> <span class="nav-text">Use fuzzy matching to correct inconsistent data entry</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Gao Yuan</span>
+
+  
+</div>
+
+<!-- 
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+-->
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共29.1k字</span>
+</div>
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'nEzqkO2DfS1e5ynUfTO1QfTh-gzGzoHsz',
+        appKey: 'nV9z4bmgQoo6fnpaGvhg9gMA',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("nEzqkO2DfS1e5ynUfTO1QfTh-gzGzoHsz", "nV9z4bmgQoo6fnpaGvhg9gMA");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>
