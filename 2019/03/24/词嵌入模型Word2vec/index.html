@@ -125,14 +125,14 @@
 <meta name="description" content="从one-hot 说起要想把自然语言交给机器学习来处理,就必须得先将语言数值化,将语言转为数值的产物也就是词向量. 最简单的词向量就是one-hot,顾名思义,每个词向量的长度是整个词典的大小,其中只有一个1,其余全为0,1所对应的位置也就是这个词在词典中的位置. one-hot 有两个缺点:  one-hot词向量是高维稀疏的,要找到最优解所需要的数据很多,而且呈指数增长,此为”维度灾难”. 无">
 <meta name="keywords" content="NLP">
 <meta property="og:type" content="article">
-<meta property="og:title" content="算法复习笔记">
+<meta property="og:title" content="词嵌入模型Word2vec">
 <meta property="og:url" content="http://gysss.github.io/2019/03/24/词嵌入模型Word2vec/index.html">
 <meta property="og:site_name" content="Gy&#39;s Blog">
 <meta property="og:description" content="从one-hot 说起要想把自然语言交给机器学习来处理,就必须得先将语言数值化,将语言转为数值的产物也就是词向量. 最简单的词向量就是one-hot,顾名思义,每个词向量的长度是整个词典的大小,其中只有一个1,其余全为0,1所对应的位置也就是这个词在词典中的位置. one-hot 有两个缺点:  one-hot词向量是高维稀疏的,要找到最优解所需要的数据很多,而且呈指数增长,此为”维度灾难”. 无">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-29T14:01:48.301Z">
+<meta property="og:updated_time" content="2019-04-02T14:52:53.899Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="算法复习笔记">
+<meta name="twitter:title" content="词嵌入模型Word2vec">
 <meta name="twitter:description" content="从one-hot 说起要想把自然语言交给机器学习来处理,就必须得先将语言数值化,将语言转为数值的产物也就是词向量. 最简单的词向量就是one-hot,顾名思义,每个词向量的长度是整个词典的大小,其中只有一个1,其余全为0,1所对应的位置也就是这个词在词典中的位置. one-hot 有两个缺点:  one-hot词向量是高维稀疏的,要找到最优解所需要的数据很多,而且呈指数增长,此为”维度灾难”. 无">
 
 
@@ -169,7 +169,7 @@
 
 
 
-  <title>算法复习笔记 | Gy's Blog</title>
+  <title>词嵌入模型Word2vec | Gy's Blog</title>
   
 
 
@@ -335,7 +335,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">算法复习笔记</h1>
+          <h1 class="post-title" itemprop="name headline">词嵌入模型Word2vec</h1>
         
 
         <div class="post-meta">
@@ -376,7 +376,7 @@
 
           
           
-             <span id="/2019/03/24/词嵌入模型Word2vec/" class="leancloud_visitors" data-flag-title="算法复习笔记">
+             <span id="/2019/03/24/词嵌入模型Word2vec/" class="leancloud_visitors" data-flag-title="词嵌入模型Word2vec">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -526,6 +526,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2019/03/30/主成成分分析PCA/" rel="prev" title="主成成分分析 PCA">
+                主成成分分析 PCA <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -606,7 +610,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -747,7 +751,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共29.8k字</span>
+  <span class="post-count">博客全站共30.8k字</span>
 </div>
         
 

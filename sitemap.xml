@@ -2,9 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://gysss.github.io/2019/01/25/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%A4%8D%E4%B9%A0/</loc>
+    
+    <lastmod>2019-04-02T14:52:53.917Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://gysss.github.io/2019/01/26/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/</loc>
+    
+    <lastmod>2019-04-02T14:52:53.917Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://gysss.github.io/2019/03/24/%E8%AF%8D%E5%B5%8C%E5%85%A5%E6%A8%A1%E5%9E%8BWord2vec/</loc>
     
-    <lastmod>2019-03-29T14:01:48.301Z</lastmod>
+    <lastmod>2019-04-02T14:52:53.899Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://gysss.github.io/2019/03/30/%E4%B8%BB%E6%88%90%E6%88%90%E5%88%86%E5%88%86%E6%9E%90PCA/</loc>
+    
+    <lastmod>2019-04-02T14:52:53.899Z</lastmod>
     
   </url>
   
@@ -37,13 +58,6 @@
   </url>
   
   <url>
-    <loc>http://gysss.github.io/2019/01/25/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%A4%8D%E4%B9%A0/</loc>
-    
-    <lastmod>2019-02-03T07:18:10.185Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://gysss.github.io/2019/01/29/Python%E4%B9%8Bpandas/</loc>
     
     <lastmod>2019-02-03T07:17:37.166Z</lastmod>
@@ -68,13 +82,6 @@
     <loc>http://gysss.github.io/2019/01/27/LeetCode-Hash/</loc>
     
     <lastmod>2019-01-27T07:23:42.064Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://gysss.github.io/2019/01/26/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/</loc>
-    
-    <lastmod>2019-01-26T05:46:10.730Z</lastmod>
     
   </url>
   
